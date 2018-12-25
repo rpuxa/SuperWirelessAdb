@@ -1,20 +1,18 @@
 package ru.rpuxa.internalserver.wifi
 
-import ru.rpuxa.internalserver.stream.MessageInputStream
-import ru.rpuxa.internalserver.stream.MessageOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.net.InetAddress
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
-abstract class WifiConnect(
-        val wifiConnectManager: WifiConnectManager,
-        var listener: Listener
+abstract class WifiConnection(
+        private val wifiConnectManager: WifiConnectManager,
+        private var listener: Listener? = null
 ) {
     private val searchers = ArrayList<Search>()
     private val running = AtomicBoolean(false)
-    protected val devices = ArrayList<WifiDevice>()
+    private val devices = ArrayList<WifiDevice>()
 
     fun start() {
         if (running.get())
@@ -30,35 +28,45 @@ abstract class WifiConnect(
                     if (searchers.count { it.address == a } == 0)
                         searchers.add(search(a))
 
-                for (s in searchers)
-                    if (addresses.count { it == s.address } == 0) {
-                        searchers.remove(s)
-                        s.stop()
+                for (i in searchers.indices.reversed())
+                    if (addresses.count { it == searchers[i].address } == 0) {
+                        searchers.removeAt(i)
+                        searchers[i].stop()
                     }
+
+                removeDisconnectedDevices()
 
                 Thread.sleep(500)
             }
 
             searchers.forEach { it.stop() }
+            devices.forEach { it.close() }
+            removeDisconnectedDevices()
         }
     }
 
-    protected fun addDevice(output: OutputStream, input: InputStream, address: InetAddress) {
+    private fun removeDisconnectedDevices() {
         for (i in devices.indices.reversed()) {
             val device = devices[i]
             if (device.isClosed) {
                 devices.removeAt(i)
-                listener.onDisconnected(device)
+                listener?.onDisconnected(device)
             }
         }
+    }
 
+    protected fun addDevice(output: OutputStream, input: InputStream, address: InetAddress) {
         val lastByte = address.address.last().toInt()
 
         if (!devices.any { it.lastAddressByte == lastByte }) {
-            val device = WifiDevice(MessageOutputStream(output), MessageInputStream(input), lastByte)
+            val device = WifiDevice(input, output, address)
             devices.add(device)
-            listener.onConnected(device)
+            listener?.onConnected(device)
         }
+    }
+
+    fun setListener(listener: Listener?) {
+        this.listener = listener
     }
 
     fun stop() {
@@ -67,11 +75,17 @@ abstract class WifiConnect(
 
     protected abstract fun search(address: String): Search
 
-    open class Listener {
-        open fun onConnected(device: WifiDevice) {
+    interface Listener {
+        fun onConnected(device: WifiDevice)
+
+        fun onDisconnected(device: WifiDevice)
+    }
+
+    open class Adapter : Listener {
+        override fun onConnected(device: WifiDevice) {
         }
 
-        open fun onDisconnected(device: WifiDevice) {
+        override fun onDisconnected(device: WifiDevice) {
         }
     }
 

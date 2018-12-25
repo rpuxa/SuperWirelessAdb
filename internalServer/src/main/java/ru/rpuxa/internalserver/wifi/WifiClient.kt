@@ -12,8 +12,8 @@ import kotlin.concurrent.thread
 
 class WifiClient(
         wifiConnectManager: WifiConnectManager,
-        listener: WifiConnect.Listener
-) : WifiConnect(wifiConnectManager, listener) {
+        listener: WifiConnection.Listener? = null
+) : WifiConnection(wifiConnectManager, listener) {
 
     override fun search(address: String): Search = SearchServer(address)
 
@@ -70,6 +70,7 @@ class WifiClient(
     companion object {
         private val WIFI_CLIENT_SERVER_IDENTIFIER = /* Random byte array. Dont edit! */
                 "iG4GBsAjlfI0mqQw9jHgG4dTa2Xtov90PcXIsckaru2ncHDbZPZpm1BojlfI0mqQof2fM"
+                        .toByteArray()
                         .map { it.toInt() }
                         .toIntArray()
 

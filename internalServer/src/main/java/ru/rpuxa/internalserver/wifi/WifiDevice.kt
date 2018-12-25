@@ -1,17 +1,22 @@
 package ru.rpuxa.internalserver.wifi
 
-import ru.rpuxa.internalserver.stream.MessageInputStream
-import ru.rpuxa.internalserver.stream.MessageOutputStream
+import ru.rpuxa.internalserver.stream.TwoWayMessageStream
+import java.io.InputStream
+import java.io.OutputStream
+import java.net.InetAddress
 
 class WifiDevice(
-        val output: MessageOutputStream,
-        val input: MessageInputStream,
-        val lastAddressByte: Int
+        input: InputStream,
+        output: OutputStream,
+        val ip: InetAddress
 ) {
-    var isClosed = output.isClosed || input.isClosed
+    val lastAddressByte: Int = ip.address[3].toInt()
+
+    val stream = TwoWayMessageStream(input, output)
+
+    val isClosed: Boolean get() = stream.isClosed
 
     fun close() {
-        output.close()
-        input.close()
+        stream.close()
     }
 }

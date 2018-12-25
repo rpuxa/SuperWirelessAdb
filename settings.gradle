@@ -1,1 +1,1 @@
-include ':android', ':internalServer'
+include ':android', ':internalServer', ':desktop'
