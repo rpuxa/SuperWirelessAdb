@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tests.ServiceActivity">
+
+        <service
+            android:name=".services.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+
+        <activity android:name=".view.activities.DevicesListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,12 +28,11 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".services.MyService"
-            android:enabled="true"
-            android:exported="true" />
 
-        <activity android:name=".tests.ChatActivity"></activity>
+        <activity android:name=".tests.ChatActivity" />
+        <activity android:name=".tests.ServiceActivity" />
+
+
     </application>
 
 </manifest>

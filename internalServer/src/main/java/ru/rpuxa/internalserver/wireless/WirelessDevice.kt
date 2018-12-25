@@ -4,11 +4,19 @@ import ru.rpuxa.internalserver.wifi.WifiDevice
 
 abstract class WirelessDevice(val wifiDevice: WifiDevice) {
 
+    lateinit var passport: Passport
+
+
+    fun setPassport() {
+        @Suppress("LeakingThis")
+        passport = updateDevicePassport().getAnswerBlocking()
+    }
+
     abstract fun checkAdbConnection(): WirelessPromise<Boolean>
 
     abstract fun connectAdb(): WirelessPromise<Int>
 
-    abstract fun getDevicePassport(): WirelessPromise<Passport>
+    abstract fun updateDevicePassport(): WirelessPromise<Passport>
 
     protected fun <T> sendMessage(command: Int, data: Any? = null): WirelessPromise<T> {
         val promise = WirelessPromiseImpl<T>()

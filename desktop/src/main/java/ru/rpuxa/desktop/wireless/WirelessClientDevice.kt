@@ -10,12 +10,15 @@ class WirelessClientDevice(device: WifiDevice) : WirelessDevice(device) {
             val ans: Any? = when (command) {
                 CHECK_ADB -> Adb.check(wifiDevice.ip)
                 CONNECT_ADB -> Adb.connect(wifiDevice.ip)
-                GET_DEVICE_PASSPORT -> DesktopPassport
+                GET_DEVICE_PASSPORT -> DesktopPassport.passport
                 else -> throw IllegalStateException("Unknown command")
             }
 
             ans
         }
+        wifiDevice.stream.open()
+
+        setPassport()
     }
 
     override fun checkAdbConnection(): WirelessPromise<Boolean> =
@@ -24,7 +27,7 @@ class WirelessClientDevice(device: WifiDevice) : WirelessDevice(device) {
     override fun connectAdb(): WirelessPromise<Int> =
             toBlockingPromise(Adb.connect(wifiDevice.ip))
 
-    override fun getDevicePassport(): WirelessPromise<Passport> =
+    override fun updateDevicePassport(): WirelessPromise<Passport> =
             sendMessage(GET_DEVICE_PASSPORT)
 
 }

@@ -4,11 +4,16 @@ import java.io.Externalizable
 import java.io.ObjectInput
 import java.io.ObjectOutput
 
-interface Passport : Externalizable {
+class Passport() : Externalizable {
 
-    var id: Long
+    var id: Long = 0
 
-    var name: String
+    var name: String = ""
+
+    constructor(id: Long, name: String) : this() {
+        this.id = id
+        this.name = name
+    }
 
     override fun readExternal(input: ObjectInput) {
         try {

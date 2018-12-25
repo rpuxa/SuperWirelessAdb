@@ -1,5 +1,8 @@
 package ru.rpuxa.desktop.main
 
-fun main(args: Array<String>) {
+import ru.rpuxa.desktop.wireless.WirelessClient
 
+fun main(args: Array<String>) {
+    WirelessClient().start()
+    println("запустили десктоп")
 }

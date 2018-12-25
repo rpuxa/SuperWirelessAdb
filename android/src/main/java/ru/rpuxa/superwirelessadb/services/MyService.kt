@@ -13,10 +13,7 @@ import android.os.IBinder
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
 import android.widget.Toast
-import ru.rpuxa.internalserver.wifi.WifiConnectManagerImpl
-import ru.rpuxa.internalserver.wifi.WifiConnection
 import ru.rpuxa.superwirelessadb.R
-import ru.rpuxa.superwirelessadb.wifi.WifiServer
 
 
 class MyService : Service() {
@@ -28,7 +25,6 @@ class MyService : Service() {
 
     override fun onBind(intent: Intent): IBinder? = null
 
-    val wifiServer by lazy { WifiServer(WifiConnectManagerImpl, WifiConnection.Adapter()) }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Toast.makeText(this, "Служба  запущена",

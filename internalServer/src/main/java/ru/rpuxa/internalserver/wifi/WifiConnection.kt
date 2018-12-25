@@ -30,8 +30,7 @@ abstract class WifiConnection(
 
                 for (i in searchers.indices.reversed())
                     if (addresses.count { it == searchers[i].address } == 0) {
-                        searchers.removeAt(i)
-                        searchers[i].stop()
+                        searchers.removeAt(i).stop()
                     }
 
                 removeDisconnectedDevices()
@@ -79,14 +78,6 @@ abstract class WifiConnection(
         fun onConnected(device: WifiDevice)
 
         fun onDisconnected(device: WifiDevice)
-    }
-
-    open class Adapter : Listener {
-        override fun onConnected(device: WifiDevice) {
-        }
-
-        override fun onDisconnected(device: WifiDevice) {
-        }
     }
 
     protected interface Search {

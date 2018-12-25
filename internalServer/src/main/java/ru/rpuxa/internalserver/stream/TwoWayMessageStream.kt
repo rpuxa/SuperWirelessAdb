@@ -9,32 +9,49 @@ typealias MessageListener = (Int, Any?) -> Any?
 
 class TwoWayMessageStream(input: InputStream, output: OutputStream) {
 
-    private val ois = ObjectInputStream(input)
-    private val oos = ObjectOutputStream(output)
+    private var oos: ObjectOutputStream? = null
+    private var ois: ObjectInputStream? = null
     private val promises: MutableMap<Long, PromiseImpl<*>> = ConcurrentHashMap()
     private var timeToCheck = TIMEOUT
-    private var listener: MessageListener? = null
+    private lateinit var listener: MessageListener
 
     var isClosed = false
 
     init {
+        try {
+            oos = ObjectOutputStream(output)
+            ois = ObjectInputStream(input)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            close()
+        }
+    }
+
+    fun open() {
+        println("hey")
+
+        if (isClosed)
+            return
+
         thread {
             try {
                 while (!isClosed) {
-                    val msg = ois.readObject() as Message
+                    val msg = ois!!.readObject() as Message
                     if (msg != CHECK_MESSAGE) {
+                        println(msg)
                         val promise = promises.remove(msg.id)
                         if (promise == null) {
                             thread {
-                                val ans = listener?.invoke(msg.command, msg.data)
+                                val ans = listener.invoke(msg.command, msg.data)
                                 send(Message(msg.id, -1, ans))
                             }
                         } else {
-                            promise.message(msg)
+                            promise.message(msg.data)
                         }
                     }
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 close()
             }
         }
@@ -53,6 +70,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
                     send(CHECK_MESSAGE)
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 close()
             }
         }
@@ -69,6 +87,8 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
             p.timeout()
         }
 
+        promises[msg.id] = promise
+
         send(msg)
 
         return promise
@@ -80,11 +100,13 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
 
     @Synchronized
     private fun send(obj: Any) {
+        println(obj)
         timeToCheck = 2 * TIMEOUT
         try {
-            oos.writeObject(obj)
-            oos.flush()
+            oos!!.writeObject(obj)
+            oos!!.flush()
         } catch (e: IOException) {
+            e.printStackTrace()
             close()
         }
         timeToCheck = 2 * TIMEOUT
@@ -93,11 +115,11 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
     fun close() {
         isClosed = true
         try {
-            ois.close()
+            ois?.close()
         } catch (e: IOException) {
         }
         try {
-            oos.close()
+            oos?.close()
         } catch (e: IOException) {
         }
     }
@@ -135,11 +157,11 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
     }
 
 
-    private data class Message(val id: Long, val command: Int, val data: Any?)
+    private data class Message(val id: Long, val command: Int, val data: Any?) : Serializable
 
     companion object {
         private const val TIMEOUT = 300
         private val random = Random()
-        private val CHECK_MESSAGE = Message(-91623681, -1, null)
+        private val CHECK_MESSAGE = Message(-1488228, -1, null)
     }
 }
