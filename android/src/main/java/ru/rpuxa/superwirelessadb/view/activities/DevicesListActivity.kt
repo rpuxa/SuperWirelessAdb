@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.device_list.*
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.view.DeviceListAdapter
+import ru.rpuxa.superwirelessadb.view.dataBase
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 
 class DevicesListActivity : AppCompatActivity() {
@@ -15,11 +16,18 @@ class DevicesListActivity : AppCompatActivity() {
         setContentView(R.layout.device_list)
 
         val adapter = DeviceListAdapter(Wireless.devices)
-        device_recycler_view.adapter = adapter
-        device_recycler_view.layoutManager = LinearLayoutManager(this)
+        my_device_recycler_view.adapter = adapter
+        my_device_recycler_view.layoutManager = LinearLayoutManager(this)
+        Wireless.server.addListener(adapter)
+    }
 
+    override fun onPause() {
+        super.onPause()
+        dataBase.save(this)
+    }
 
-        Wireless.server.setListener(adapter)
-        Wireless.server.start()
+    override fun onStop() {
+        super.onStop()
+        Wireless.server.clearListeners()
     }
 }

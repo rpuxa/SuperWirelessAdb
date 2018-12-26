@@ -17,7 +17,7 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
         val wirelessDevice = createWirelessDevice(device)
         synchronized(devices) {
             devices.add(wirelessDevice)
-            listener?.onConnected(wirelessDevice, devices.lastIndex)
+            listeners.forEach { it.onConnected(wirelessDevice, devices.lastIndex) }
         }
     }
 
@@ -27,7 +27,7 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
             for (i in devices.indices.reversed()) {
                 if (devices[i].wifiDevice === device) {
                     val removed = devices.removeAt(i)
-                    listener?.onDisconnected(removed, i)
+                    listeners.forEach { it.onDisconnected(removed, i) }
                     break
                 }
             }
@@ -44,11 +44,14 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
 
     abstract fun createWirelessDevice(device: WifiDevice): WirelessDevice
 
-    private var listener: Listener? = null
+    private var listeners = ArrayList<Listener>()
 
-    fun setListener(listener: Listener) {
-        println("листенер")
-        this.listener = listener
+    fun addListener(listener: Listener) {
+        listeners.add(listener)
+    }
+
+    fun clearListeners() {
+        listeners.clear()
     }
 
     interface Listener {

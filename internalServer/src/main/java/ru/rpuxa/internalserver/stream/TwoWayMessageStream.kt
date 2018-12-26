@@ -28,8 +28,6 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
     }
 
     fun open() {
-        println("hey")
-
         if (isClosed)
             return
 

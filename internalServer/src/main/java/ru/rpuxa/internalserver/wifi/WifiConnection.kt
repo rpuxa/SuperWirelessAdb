@@ -16,7 +16,7 @@ abstract class WifiConnection(
 
     fun start() {
         if (running.get())
-            throw IllegalStateException("Already started!")
+            return
 
         running.set(true)
 
