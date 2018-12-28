@@ -2,7 +2,7 @@ package ru.rpuxa.superwirelessadb.wireless
 
 object Wireless {
 
-    val server = WirelessServer()
+    lateinit var server: WirelessServer
 
     val devices get() = server.devices
 }

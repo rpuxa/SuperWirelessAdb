@@ -13,7 +13,7 @@ import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 
-class MyDeviceListAdapter(private val list: List<Passport>) :
+class MyDeviceListAdapter(private val list: MutableList<Passport>) :
         RecyclerView.Adapter<MyDeviceListAdapter.Holder>(),
         WirelessConnection.Listener {
 
