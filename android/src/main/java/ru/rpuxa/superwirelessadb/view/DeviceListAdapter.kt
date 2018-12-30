@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import kotlinx.android.synthetic.main.device_item.view.*
+import ru.rpuxa.internalserver.wireless.AbstractWirelessDevice
 import ru.rpuxa.internalserver.wireless.Passport
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
 
 class DeviceListAdapter(
-        private val list: List<WirelessDevice>,
+        private val devices: List<AbstractWirelessDevice>,
         private val myDevices: MutableList<Passport>
 ) : RecyclerView.Adapter<DeviceListAdapter.Holder>(),
         WirelessConnection.Listener {
@@ -34,13 +35,15 @@ class DeviceListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return devices.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val device = list[position]
+        val device = devices[position]
 
         holder.apply {
+            isMyDevice.isChecked = myDevices.any { it.id == device.passport.id }
+
             isMyDevice.setOnClickListener {
                 myDevices.remove(device.passport)
 

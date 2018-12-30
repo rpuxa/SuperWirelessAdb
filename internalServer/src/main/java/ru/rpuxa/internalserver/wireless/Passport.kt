@@ -43,5 +43,8 @@ class Passport() : Externalizable {
         return id.hashCode()
     }
 
+    companion object {
+        private const val serialVersionUID = -5723538437214719377L
+    }
 
 }

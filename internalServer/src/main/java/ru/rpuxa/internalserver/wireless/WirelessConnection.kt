@@ -10,15 +10,16 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
         wifi.setListener(this)
     }
 
-    val devices = ArrayList<WirelessDevice>()
+    val devices = ArrayList<AbstractWirelessDevice>()
 
     final override fun onConnected(device: WifiDevice) {
         println("connected")
         val wirelessDevice = createWirelessDevice(device)
-        synchronized(devices) {
-            devices.add(wirelessDevice)
-            listeners.forEach { it.onConnected(wirelessDevice, devices.lastIndex) }
-        }
+        if (!wirelessDevice.wifiDevice.isClosed)
+            synchronized(devices) {
+                devices.add(wirelessDevice)
+                listeners.forEach { it.onConnected(wirelessDevice, devices.lastIndex) }
+            }
     }
 
     final override fun onDisconnected(device: WifiDevice) {
@@ -42,16 +43,22 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
         wifi.stop()
     }
 
-    abstract fun createWirelessDevice(device: WifiDevice): WirelessDevice
+    val isWifiConnected: Boolean get() = wifi.isWifiConnected
+
+    abstract fun createWirelessDevice(device: WifiDevice): AbstractWirelessDevice
 
     private var listeners = ArrayList<Listener>()
 
     fun addListener(listener: Listener) {
-        listeners.add(listener)
+        synchronized(devices) {
+            listeners.add(listener)
+        }
     }
 
-    fun clearListeners() {
-        listeners.clear()
+    fun removeListener(listener: Listener) {
+        synchronized(devices) {
+            listeners.remove(listener)
+        }
     }
 
     interface Listener {

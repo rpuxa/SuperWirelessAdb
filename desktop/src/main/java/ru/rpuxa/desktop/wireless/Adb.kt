@@ -7,9 +7,9 @@ import java.net.InetAddress
 
 object Adb {
 
-    const val UNKNOWN_ERROR = -103
+    private const val UNKNOWN_ERROR = -1
 
-    private val adbPath: String = ""
+    private const val adbPath: String = "C:\\SDK\\platform-tools"
 
     fun check(ip: InetAddress): Boolean {
         try {
@@ -65,9 +65,6 @@ object Adb {
                             "adb connect ${ip.toString().substring(1)}:5555"
             )
             BufferedReader(InputStreamReader(builder.start().inputStream)).readLine()
-            /*  while (true) {
-                  reader.readLine() ?: break
-              }*/
             return check(ip)
         } catch (e: IOException) {
             return false

@@ -1,36 +1,18 @@
 package ru.rpuxa.internalserver.wireless
 
-import ru.rpuxa.internalserver.wifi.WifiDevice
+import ru.rpuxa.internalserver.stream.NothingReturn
 
-abstract class WirelessDevice(val wifiDevice: WifiDevice) {
+interface WirelessDevice {
 
-    lateinit var passport: Passport
+    val passport: Passport
 
+    val isAdbConnected: Boolean
 
-    fun setPassport() {
-        @Suppress("LeakingThis")
-        passport = updateDevicePassport().getAnswerBlocking()
-    }
+    fun connectAdb(): WirelessPromise<Int>
 
-    abstract fun checkAdbConnection(): WirelessPromise<Boolean>
+    fun disconnectAdb(): WirelessPromise<NothingReturn>
 
-    abstract fun connectAdb(): WirelessPromise<Int>
+    fun fixAdbError10061(): WirelessPromise<Boolean>
 
-    abstract fun updateDevicePassport(): WirelessPromise<Passport>
-
-    protected fun <T> sendMessage(command: Int, data: Any? = null): WirelessPromise<T> {
-        val promise = WirelessPromiseImpl<T>()
-        wifiDevice.stream.sendMessage<T>(command, data)
-                .onMessage(promise::answer)
-                .onTimeout { promise.error(WirelessErrors.TIMEOUT) }
-
-        return promise
-    }
-
-
-    protected fun <T> toBlockingPromise(value: T) =
-            WirelessPromiseImpl<T>().apply {
-                answer(value)
-            }
+    override fun equals(other: Any?): Boolean
 }
-

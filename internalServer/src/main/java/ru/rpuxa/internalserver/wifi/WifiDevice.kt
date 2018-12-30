@@ -19,4 +19,6 @@ class WifiDevice(
     fun close() {
         stream.close()
     }
+
+
 }

@@ -2,7 +2,6 @@ package ru.rpuxa.superwirelessadb.view
 
 import android.content.Context
 import android.os.Build
-import android.util.ArraySet
 import ru.rpuxa.internalserver.wireless.Passport
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,12 +22,16 @@ interface IDataBase : StringSerializable {
     val myDevices: MutableList<Passport>
 
     val autoConnectedDevices: MutableSet<Long>
+
+    var runServiceInBackground: Boolean
+
+    fun save(context: Context)
 }
 
 private var _dataBase: IDataBase? = null
 
 private class DataBaseImpl : IDataBase {
-    override var passport = Passport(
+    override val passport = Passport(
             Random().nextLong(),
             Build.MANUFACTURER + Build.PRODUCT
     )
@@ -37,7 +40,15 @@ private class DataBaseImpl : IDataBase {
 
     override val autoConnectedDevices = HashSet<Long>()
 
-    override fun getSaveName() = DATA_BASE_SAVE_NAME
+    override var runServiceInBackground = true
+
+    override fun save(context: Context) {
+        save(context, DATA_BASE_SAVE_NAME)
+    }
+
+    companion object {
+        private const val serialVersionUID = -5176460647131049324L
+    }
 }
 
 private const val DATA_BASE_SAVE_NAME = "database"

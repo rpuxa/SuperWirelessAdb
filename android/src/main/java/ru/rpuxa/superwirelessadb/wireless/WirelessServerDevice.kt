@@ -1,17 +1,20 @@
 package ru.rpuxa.superwirelessadb.wireless
 
-import android.content.Context
+import ru.rpuxa.internalserver.stream.NothingReturn
 import ru.rpuxa.internalserver.wifi.WifiDevice
 import ru.rpuxa.internalserver.wireless.*
-import ru.rpuxa.superwirelessadb.view.dataBase
 
-class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport) : WirelessDevice(device) {
+class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport) : AbstractWirelessDevice(device) {
 
     init {
         wifiDevice.stream.onMessage { command, data ->
             val ans: Any? = when (command) {
                 GET_DEVICE_PASSPORT -> myPassport
-                else -> throw IllegalStateException("Unknown command")
+                ADB_STATE -> {
+                    isAdbConnected = data as Boolean
+                    NothingReturn
+                }
+                else -> throw IllegalStateException("Unknown command $command")
             }
 
             ans
@@ -22,6 +25,9 @@ class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
         setPassport()
     }
 
+    override fun disconnectAdb(): WirelessPromise<NothingReturn> =
+            sendMessage(DISCONNECT_ADB)
+
     override fun checkAdbConnection(): WirelessPromise<Boolean> =
             sendMessage(CHECK_ADB)
 
@@ -31,5 +37,6 @@ class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
     override fun updateDevicePassport(): WirelessPromise<Passport> =
             sendMessage(GET_DEVICE_PASSPORT)
 
-
+    override fun fixAdbError10061(): WirelessPromise<Boolean> =
+            sendMessage(FIX_10061)
 }

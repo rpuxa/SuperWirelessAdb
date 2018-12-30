@@ -36,7 +36,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
                 while (!isClosed) {
                     val msg = ois!!.readObject() as Message
                     if (msg != CHECK_MESSAGE) {
-                        println(msg)
+                        println("in $msg")
                         val promise = promises.remove(msg.id)
                         if (promise == null) {
                             thread {
@@ -97,11 +97,12 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
     }
 
     @Synchronized
-    private fun send(obj: Any) {
-        println(obj)
+    private fun send(msg: Message) {
+        if (msg != CHECK_MESSAGE)
+            println("out $msg")
         timeToCheck = 2 * TIMEOUT
         try {
-            oos!!.writeObject(obj)
+            oos!!.writeObject(msg)
             oos!!.flush()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -162,4 +163,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
         private val random = Random()
         private val CHECK_MESSAGE = Message(-1488228, -1, null)
     }
+
 }
+
+object NothingReturn : Serializable

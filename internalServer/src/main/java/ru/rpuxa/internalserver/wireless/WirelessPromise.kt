@@ -7,7 +7,7 @@ interface WirelessPromise<T> {
 
     fun onError(callback: (WirelessErrors) -> Unit): WirelessPromise<T>
 
-    fun getAnswerBlocking(): T {
+    fun getAnswerBlocking(): T? {
         var answer: T? = null
         val lock = CountDownLatch(1)
 
@@ -16,8 +16,12 @@ interface WirelessPromise<T> {
             lock.countDown()
         }
 
+        onError {
+            lock.countDown()
+        }
+
         lock.await()
 
-        return answer!!
+        return answer
     }
 }

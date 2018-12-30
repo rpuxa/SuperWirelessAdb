@@ -13,6 +13,8 @@ abstract class WifiConnection(
     private val searchers = ArrayList<Search>()
     private val running = AtomicBoolean(false)
     private val devices = ArrayList<WifiDevice>()
+    val isWifiConnected: Boolean
+        get() = searchers.isNotEmpty()
 
     fun start() {
         if (running.get())
