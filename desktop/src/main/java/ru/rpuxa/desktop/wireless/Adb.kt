@@ -9,7 +9,9 @@ object Adb {
 
     private const val UNKNOWN_ERROR = -1
 
-    private const val adbPath: String = "C:\\SDK\\platform-tools"
+    lateinit var adbPathGetter: () -> String
+
+    private val adbPath get() = adbPathGetter()
 
     fun check(ip: InetAddress): Boolean {
         try {
@@ -54,7 +56,7 @@ object Adb {
     }
 
     fun fix10061(ip: InetAddress): Boolean {
-        try {
+        return try {
             val builder = ProcessBuilder(
                     "cmd.exe",
                     "/c",
@@ -65,9 +67,9 @@ object Adb {
                             "adb connect ${ip.toString().substring(1)}:5555"
             )
             BufferedReader(InputStreamReader(builder.start().inputStream)).readLine()
-            return check(ip)
+            check(ip)
         } catch (e: IOException) {
-            return false
+            false
         }
     }
 

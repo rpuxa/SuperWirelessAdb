@@ -1,4 +1,4 @@
-package ru.rpuxa.desktop
+package ru.rpuxa.desktop.view
 
 import java.awt.Component
 import java.awt.Dimension

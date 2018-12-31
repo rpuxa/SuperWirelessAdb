@@ -4,13 +4,15 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation project(':internalServer')
+    compile project(':internalServer')
 }
 
 jar {
     manifest {
         attributes 'Main-Class': 'ru.rpuxa.desktop.main.MainKt'
     }
+
+//    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 sourceCompatibility = "1.7"

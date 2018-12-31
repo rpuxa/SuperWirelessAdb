@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="internalServer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../internalServer/build/libs/internalServer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

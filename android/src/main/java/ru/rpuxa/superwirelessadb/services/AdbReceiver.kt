@@ -10,8 +10,7 @@ class AdbReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.extras.getLong(DEVICE_ID)
         thread {
-            val device = Wireless.device(id)
-            device?.connectAdb()
+            Wireless.device(id)?.connectAdb()
         }
     }
 

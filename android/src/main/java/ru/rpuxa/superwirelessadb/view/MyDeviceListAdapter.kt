@@ -59,6 +59,8 @@ class MyDeviceListAdapter(private val myDevices: MutableList<Passport>) :
     }
 
     override fun onConnected(device: WirelessDevice, position: Int) {
+        myDevices.find { it.id == device.passport.id }?.name = device.passport.name
+
         handler.post {
             notifyItemChanged(position)
         }

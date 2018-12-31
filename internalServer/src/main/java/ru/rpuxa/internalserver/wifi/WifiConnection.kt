@@ -10,8 +10,8 @@ abstract class WifiConnection(
         private val wifiConnectManager: WifiConnectManager,
         private var listener: Listener? = null
 ) {
+    val running = AtomicBoolean(false)
     private val searchers = ArrayList<Search>()
-    private val running = AtomicBoolean(false)
     private val devices = ArrayList<WifiDevice>()
     val isWifiConnected: Boolean
         get() = searchers.isNotEmpty()

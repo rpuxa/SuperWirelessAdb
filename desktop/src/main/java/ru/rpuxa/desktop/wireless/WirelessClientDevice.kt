@@ -18,7 +18,7 @@ class WirelessClientDevice(device: WifiDevice) : AbstractWirelessDevice(device) 
                     Adb.disconnect(wifiDevice.ip)
                     NothingReturn
                 }
-                GET_DEVICE_PASSPORT -> DesktopInternalServer.passport
+                GET_DEVICE_PASSPORT -> InternalServerController.passport
                 FIX_10061 -> Adb.fix10061(wifiDevice.ip)
                 else -> throw IllegalStateException("Unknown command")
             }

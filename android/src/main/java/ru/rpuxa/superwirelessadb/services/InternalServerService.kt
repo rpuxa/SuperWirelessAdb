@@ -10,8 +10,6 @@ import android.os.Process.killProcess
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
 import org.jetbrains.anko.intentFor
-import ru.rpuxa.internalserver.Monitoring
-import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.view.activities.InfoActivity
@@ -20,7 +18,7 @@ import ru.rpuxa.superwirelessadb.view.dataBase
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 import kotlin.concurrent.thread
 
-class InternalServerService : Service(), WirelessConnection.Listener {
+class InternalServerService : Service() {
 
     private val channelId by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -30,75 +28,96 @@ class InternalServerService : Service(), WirelessConnection.Listener {
         }
     }
 
-    private var showDevice: WirelessDevice? = null
-    private var monitoring: Monitoring<Boolean>? = null
+    private var destroyed = false
 
     override fun onCreate() {
-        startForeground(SERVICE_ID, notification())
+        startForeground(SERVICE_ID, notification(null))
 
-        Monitoring(
-                { Wireless.server.isWifiConnected },
-                { updateNotification() },
-                defaultValue = Wireless.server.isWifiConnected
-        ).start()
+        thread {
+            var isWifiConnected: Boolean? = null
+            var device: WirelessDevice? = null
+            var deviceName: String? = null
+            var isAdbConnected: Boolean? = null
+            while (!destroyed) {
+                val currentIsWifiConnected = Wireless.server.isWifiConnected
+                val currentDevice = Wireless.myOnlineDevices(this).getOrNull(0)
+                val currentDeviceName = currentDevice?.passport?.name
+                val currentIsAdbConnected = currentDevice?.isAdbConnected
+
+                if (
+                        isWifiConnected != currentIsWifiConnected ||
+                        device != currentDevice ||
+                        isAdbConnected != currentIsAdbConnected ||
+                        deviceName != currentDeviceName
+                ) {
+                    updateNotification(currentDevice)
+                }
+
+                isWifiConnected = currentIsWifiConnected
+                device = currentDevice
+                isAdbConnected = currentIsAdbConnected
+                deviceName = currentDeviceName
+
+                Thread.sleep(500)
+            }
+        }
     }
 
     override fun onBind(intent: Intent) = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Wireless.server.addListener(this)
         Wireless.server.start()
         return START_STICKY
     }
 
     override fun onDestroy() {
+        destroyed = true
         Wireless.server.stop()
-        Wireless.server.removeListener(this)
         super.onDestroy()
         killProcess(Process.myPid())
     }
 
-    private fun NotificationCompat.Builder.buildNotification(): Notification {
+    private fun NotificationCompat.Builder.buildNotification(device: WirelessDevice?): Notification {
         setOngoing(true)
         setSmallIcon(R.drawable.connect_adb)
         setCategory(Notification.CATEGORY_SERVICE)
         setContentTitle("Super wireless ADB")
-        val showDevice = showDevice
-        val adbConnected = showDevice?.isAdbConnected
+        val adbConnected = device?.isAdbConnected
         val text =
                 when {
                     !Wireless.server.isWifiConnected -> "Вы не подключены к WiFi"
                     adbConnected == null -> "Ближайших устройств не найдено"
-                    !adbConnected -> "Обнаружен компьютер ${showDevice.passport.name}"
-                    else -> "Соединение ADB с ${showDevice.passport.name} установлено"
+                    !adbConnected -> "Обнаружен компьютер ${device.passport.name}"
+                    else -> "Соединение ADB с ${device.passport.name} установлено"
                 }
 
         setContentText(text)
 
         if (adbConnected == false) {
             val intent = intentFor<AdbReceiver>(
-                    AdbReceiver.DEVICE_ID to showDevice.passport.id
+                    AdbReceiver.DEVICE_ID to device.passport.id
             )
             val broadcast = PendingIntent.getBroadcast(
                     this@InternalServerService,
                     0,
                     intent,
-                    0
+                    PendingIntent.FLAG_UPDATE_CURRENT
             )
 
             addAction(R.drawable.connect_adb, "Подключить ADB", broadcast)
         }
-        val intent = if (showDevice == null)
+        val intent = if (device == null)
             intentFor<MainActivity>()
         else
-            intentFor<InfoActivity>(InfoActivity.DEVICE_PASSPORT to showDevice.passport)
+            intentFor<InfoActivity>(InfoActivity.DEVICE_PASSPORT to device.passport)
 
         val pendingIntent = PendingIntent.getActivity(
                 this@InternalServerService,
                 0,
                 intent,
-                0
+                PendingIntent.FLAG_UPDATE_CURRENT
         )
+
 
         setContentIntent(pendingIntent)
 
@@ -124,35 +143,14 @@ class InternalServerService : Service(), WirelessConnection.Listener {
         return channelId
     }
 
-    private fun notification(): Notification? {
+    private fun notification(device: WirelessDevice?): Notification? {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-        return notificationBuilder.buildNotification()
+        return notificationBuilder.buildNotification(device)
     }
 
-    private fun updateNotification() {
+    private fun updateNotification(device: WirelessDevice?) {
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        mNotificationManager.notify(SERVICE_ID, notification())
-    }
-
-    override fun onConnected(device: WirelessDevice, position: Int) {
-        if (device.passport.id in dataBase.autoConnectedDevices)
-            thread { device.connectAdb() }
-        if (showDevice == null) {
-            showDevice = Wireless.myOnlineDevices(this).getOrNull(0)
-            if (showDevice != null)
-                monitoring = Monitoring(
-                        { showDevice!!.isAdbConnected },
-                        { updateNotification() }
-                ).start()
-        }
-    }
-
-    override fun onDisconnected(device: WirelessDevice, position: Int) {
-        if (showDevice == device) {
-            monitoring?.stop()
-            showDevice = null
-            updateNotification()
-        }
+        mNotificationManager.notify(SERVICE_ID, notification(device))
     }
 
     companion object {

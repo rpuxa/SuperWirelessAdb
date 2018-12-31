@@ -103,6 +103,8 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
 
     private fun connected(device: WirelessDevice) {
         runOnUiThread {
+            dataBase.myDevices.find { device.passport.id == device.passport.id }!!.name = device.passport.name
+            info_device_name.text = device.passport.name
             is_adb_connected.isEnabled = true
             info_online_dot.visibility = View.VISIBLE
             monitoring = Monitoring(
