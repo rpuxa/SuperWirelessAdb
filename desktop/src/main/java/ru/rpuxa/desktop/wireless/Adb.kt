@@ -1,5 +1,6 @@
 package ru.rpuxa.desktop.wireless
 
+import ru.rpuxa.desktop.log
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -28,9 +29,22 @@ object Adb {
         }
     }
 
-    fun connect(ip: InetAddress) = change(ip, true)
+    fun connect(ip: InetAddress): Int {
+        val res = change(ip, true)
+        return when {
+            res != 0 -> res
+            check(ip) -> {
+                log("Adb connected ${ip.toString().substring(1)}")
+                0
+            }
+            else -> UNKNOWN_ERROR
+        }
+    }
 
-    fun disconnect(ip: InetAddress) = change(ip, false)
+    fun disconnect(ip: InetAddress) {
+        change(ip, false)
+        log("Adb disconnected ${ip.toString().substring(1)}")
+    }
 
     private fun change(ip: InetAddress, connect: Boolean): Int {
         try {

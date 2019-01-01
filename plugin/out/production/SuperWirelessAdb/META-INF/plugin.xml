@@ -1,41 +1,27 @@
 <idea-plugin>
-    <id>com.your.company.unique.plugin.id</id>
-    <name>Plugin display name here</name>
-    <version>1.0</version>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <id>ru.rpuxa.superwirelessadb</id>
+    <name>Super Wireless ADB</name>
+    <version>1.0.0</version>
+    <vendor email="gr0070@mail.ru" url="http://www.vk.com/grishayurkov">rpuxa</vendor>
 
     <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Wifi adb.<br>
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      Release plugin!.<br>
     ]]>
     </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="141.0" />
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
+    <idea-version since-build="141.0" />
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow anchor="right" factoryClass="ru.rpuxa.superwirelessadb.MainView"
-            icon="/icons/icon.png" id="Wireless ADB" order="first" secondary="true" />
-        <applicationService serviceImplementation="ru.rpuxa.superwirelessadb.impl.ServiceImpl"
-            serviceInterface="ru.rpuxa.superwirelessadb.Service" />
+            icon="/icons/app_icon.svg" id="Super wireless ADB" order="first" secondary="true" />
     </extensions>
 
-    <!--<depends>org.jetbrains.android</depends>-->
+    <depends>org.jetbrains.android</depends>
 
-
-    <actions>
-        <!-- Add your actions here -->
-    </actions>
 
 </idea-plugin>

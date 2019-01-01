@@ -10,6 +10,7 @@ import android.os.Process.killProcess
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
 import org.jetbrains.anko.intentFor
+import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.view.activities.InfoActivity
@@ -18,7 +19,7 @@ import ru.rpuxa.superwirelessadb.view.dataBase
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 import kotlin.concurrent.thread
 
-class InternalServerService : Service() {
+class InternalServerService : Service(), WirelessConnection.Listener {
 
     private val channelId by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -32,7 +33,7 @@ class InternalServerService : Service() {
 
     override fun onCreate() {
         startForeground(SERVICE_ID, notification(null))
-
+        Wireless.server.addListener(this)
         thread {
             var isWifiConnected: Boolean? = null
             var device: WirelessDevice? = null
@@ -72,6 +73,7 @@ class InternalServerService : Service() {
 
     override fun onDestroy() {
         destroyed = true
+        Wireless.server.removeListener(this)
         Wireless.server.stop()
         super.onDestroy()
         killProcess(Process.myPid())
@@ -151,6 +153,14 @@ class InternalServerService : Service() {
     private fun updateNotification(device: WirelessDevice?) {
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         mNotificationManager.notify(SERVICE_ID, notification(device))
+    }
+
+    override fun onConnected(device: WirelessDevice, position: Int) {
+        if (device.passport.id in dataBase.autoConnectedDevices)
+            thread { device.connectAdb() }
+    }
+
+    override fun onDisconnected(device: WirelessDevice, position: Int) {
     }
 
     companion object {

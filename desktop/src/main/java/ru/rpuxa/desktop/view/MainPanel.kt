@@ -10,7 +10,7 @@ import kotlin.concurrent.thread
 class MainPanel : JPanel() {
 
     private val mainSwitch = JCheckBox("Enable Super wireless ADB")
-    private val autoLoading = JCheckBox("Run Super wireless ADB with Android Studio")
+    private val autoLoading = JCheckBox("Enable Super wireless ADB with Android Studio")
     private val namePicker = NamePicker()
 
     init {
@@ -36,6 +36,8 @@ class MainPanel : JPanel() {
                 InternalServerController.runServer()
         }
 
+        autoLoading.isSelected = InternalServerController.autoLoading
+
         autoLoading.addActionListener {
             InternalServerController.autoLoading = autoLoading.isSelected
         }
@@ -47,6 +49,4 @@ class MainPanel : JPanel() {
             }
         }
     }
-
-
 }
