@@ -27,9 +27,8 @@ class MainPanel : JPanel() {
     }
 
 
-    //Listeners
     init {
-        mainSwitch.addActionListener {
+        mainSwitch.addItemListener {
             if (InternalServerController.isServerRunning())
                 InternalServerController.terminateServer()
             else
@@ -38,7 +37,7 @@ class MainPanel : JPanel() {
 
         autoLoading.isSelected = InternalServerController.autoLoading
 
-        autoLoading.addActionListener {
+        autoLoading.addItemListener {
             InternalServerController.autoLoading = autoLoading.isSelected
         }
 

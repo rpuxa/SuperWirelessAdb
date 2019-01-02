@@ -2,19 +2,10 @@ package ru.rpuxa.desktop.wireless
 
 import ru.rpuxa.internalserver.wireless.Passport
 import java.io.*
-import java.net.InetAddress
-import java.net.NetworkInterface
 import java.util.*
 import kotlin.concurrent.thread
 
 object InternalServerController {
-
-    private val computerSeed: Long
-        get() {
-            val nameHash = System.getProperty("user.name").hashCode()
-            val macHash = Arrays.hashCode(NetworkInterface.getByInetAddress(InetAddress.getLocalHost()).hardwareAddress)
-            return Random((nameHash.toLong() shl 31) or macHash.toLong()).nextLong()
-        }
 
     var autoLoading = true
     lateinit var passport: Passport
@@ -67,7 +58,7 @@ object InternalServerController {
         } catch (e: Exception) {
             e.printStackTrace()
             passport = Passport(
-                    computerSeed,
+                    Random().nextLong(),
                     "ADB_${System.getProperty("user.name")}"
             )
         }

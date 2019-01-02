@@ -15,8 +15,8 @@
       <file leaf-file-name="plugin.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+            <state relative-caret-position="496">
+              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -33,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/MainView.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="16" lean-forward="true" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding>
                 <element signature="e#35#636#0" expanded="true" />
               </folding>
@@ -62,14 +62,14 @@
       <file leaf-file-name="EventLog.class" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Android/Android Studio/lib/idea.jar!/com/intellij/notification/EventLog.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="6368">
               <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
               <folding>
                 <marker date="1528158876000" expanded="false" signature="0:104" ph="/.../" />
                 <marker date="1528158876000" expanded="false" signature="149:2462" ph="..." />
                 <marker date="1528158876000" expanded="true" signature="4437:5199" ph="{...}" />
-                <marker date="1528158876000" expanded="false" signature="4540:4637" ph="notify(notification) → {" />
-                <marker date="1528158876000" expanded="false" signature="5176:5191" ph="}" />
+                <marker date="1528158876000" expanded="true" signature="4567:5191" ph="{...}" />
+                <marker date="1528158876000" expanded="true" signature="4636:5181" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="5279:5648" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="5768:5844" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="5900:5998" ph="{...}" />
@@ -80,8 +80,8 @@
                 <marker date="1528158876000" expanded="true" signature="7225:10881" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="8621:8861" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="8710:8847" ph="{...}" />
-                <marker date="1528158876000" expanded="false" signature="9003:9133" ph="hyperlinkUpdate(n, event) → {" />
-                <marker date="1528158876000" expanded="false" signature="9486:9505" ph="}" />
+                <marker date="1528158876000" expanded="true" signature="9030:9505" ph="{...}" />
+                <marker date="1528158876000" expanded="true" signature="9132:9491" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="10979:11048" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="11121:11593" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="11691:11873" ph="{...}" />
@@ -109,8 +109,8 @@
                 <marker date="1528158876000" expanded="true" signature="24074:24587" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="24667:29387" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="24974:25652" ph="{...}" />
-                <marker date="1528158876000" expanded="false" signature="25434:25535" ph="notify(notification) → {" />
-                <marker date="1528158876000" expanded="false" signature="25621:25640" ph="}" />
+                <marker date="1528158876000" expanded="true" signature="25461:25640" ph="{...}" />
+                <marker date="1528158876000" expanded="true" signature="25534:25626" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="25688:26083" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="26121:26296" ph="{...}" />
                 <marker date="1528158876000" expanded="true" signature="26364:26838" ph="{...}" />
@@ -212,7 +212,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,9 +255,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,12 +429,13 @@
       <workItem from="1546187795147" duration="589000" />
       <workItem from="1546242204079" duration="6080000" />
       <workItem from="1546253182066" duration="6107000" />
-      <workItem from="1546332787688" duration="6084000" />
+      <workItem from="1546332787688" duration="6696000" />
+      <workItem from="1546415886858" duration="970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18933000" />
+    <option name="totallyTimeSpent" value="20515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -447,11 +448,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1088" y="-426" width="1096" height="1896" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11385306" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32978126" sideWeight="0.4814815" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978126" sideWeight="0.4814815" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -462,7 +464,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978126" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="-1795" y="35" width="639" height="987" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="-1795" y="35" width="639" height="987" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -493,6 +495,114 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/icons/app_icon.svg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/MainView.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="true" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding>
+            <element signature="e#35#636#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Android/Android Studio/lib/openapi.jar!/com/intellij/openapi/wm/ToolWindowFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <marker date="1528158878000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1528158878000" expanded="false" signature="147:226" ph="..." />
+            <marker date="1528158878000" expanded="true" signature="390:397" ph="{}" />
+            <marker date="1528158878000" expanded="true" signature="462:473" ph=" { " />
+            <marker date="1528158878000" expanded="true" signature="485:491" ph=" }" />
+            <marker date="1528158878000" expanded="false" signature="537:548" ph=" { " />
+            <marker date="1528158878000" expanded="false" signature="561:567" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Android/Android Studio/lib/idea.jar!/com/intellij/notification/EventLog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6368">
+          <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
+          <folding>
+            <marker date="1528158876000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1528158876000" expanded="false" signature="149:2462" ph="..." />
+            <marker date="1528158876000" expanded="true" signature="4437:5199" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="4567:5191" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="4636:5181" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5279:5648" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5768:5844" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5900:5998" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6079:6200" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6266:6778" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6876:6940" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="7054:7117" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="7225:10881" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="8621:8861" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="8710:8847" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="9030:9505" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="9132:9491" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="10979:11048" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="11121:11593" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="11691:11873" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="12025:13457" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="13610:14286" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="14488:16961" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="17041:17338" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="17467:19007" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="19137:19675" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="19744:20070" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20144:20258" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20357:20691" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20804:21280" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20838:21266" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21352:21740" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21814:21914" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21970:23685" ph="{...}" />
+            <marker date="1528158876000" expanded="false" signature="22130:22145" ph=" { " />
+            <marker date="1528158876000" expanded="false" signature="22180:22190" ph=" }" />
+            <marker date="1528158876000" expanded="true" signature="22267:22334" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="22382:23456" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23525:23679" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23763:24593" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23935:24026" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24074:24587" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24667:29387" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24974:25652" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25461:25640" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25534:25626" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25688:26083" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26121:26296" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26364:26838" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26951:27353" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27042:27341" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27216:27306" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27445:27853" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27614:27826" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27923:28299" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="28398:28472" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="28560:28922" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29003:29381" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29422:29907" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29744:29901" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding />
@@ -513,26 +623,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/impl/ServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/Service.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="9" column="50" lean-forward="false" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/impl/ServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/Service.kt" />
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
@@ -558,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71728">
           <caret line="4483" column="0" lean-forward="false" selection-start-line="4483" selection-start-column="0" selection-end-line="4483" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -593,7 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69792">
           <caret line="4483" column="0" lean-forward="false" selection-start-line="4483" selection-start-column="0" selection-end-line="4483" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -612,31 +705,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="36" column="52" lean-forward="false" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/impl/ServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/Service.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/impl/ServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/Service.kt" />
     <entry file="jar://$PROJECT_DIR$/../desktop/build/libs/desktop.jar!/ru/rpuxa/desktop/wireless/InternalServerController.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,20 +721,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Android/Android Studio/lib/idea.jar!/com/intellij/notification/EventLog.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="6368">
           <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
           <folding>
             <marker date="1528158876000" expanded="false" signature="0:104" ph="/.../" />
             <marker date="1528158876000" expanded="false" signature="149:2462" ph="..." />
             <marker date="1528158876000" expanded="true" signature="4437:5199" ph="{...}" />
-            <marker date="1528158876000" expanded="false" signature="4540:4637" ph="notify(notification) → {" />
-            <marker date="1528158876000" expanded="false" signature="5176:5191" ph="}" />
+            <marker date="1528158876000" expanded="true" signature="4567:5191" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="4636:5181" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="5279:5648" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="5768:5844" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="5900:5998" ph="{...}" />
@@ -668,8 +744,8 @@
             <marker date="1528158876000" expanded="true" signature="7225:10881" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="8621:8861" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="8710:8847" ph="{...}" />
-            <marker date="1528158876000" expanded="false" signature="9003:9133" ph="hyperlinkUpdate(n, event) → {" />
-            <marker date="1528158876000" expanded="false" signature="9486:9505" ph="}" />
+            <marker date="1528158876000" expanded="true" signature="9030:9505" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="9132:9491" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="10979:11048" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="11121:11593" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="11691:11873" ph="{...}" />
@@ -697,8 +773,8 @@
             <marker date="1528158876000" expanded="true" signature="24074:24587" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="24667:29387" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="24974:25652" ph="{...}" />
-            <marker date="1528158876000" expanded="false" signature="25434:25535" ph="notify(notification) → {" />
-            <marker date="1528158876000" expanded="false" signature="25621:25640" ph="}" />
+            <marker date="1528158876000" expanded="true" signature="25461:25640" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25534:25626" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="25688:26083" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="26121:26296" ph="{...}" />
             <marker date="1528158876000" expanded="true" signature="26364:26838" ph="{...}" />
@@ -733,11 +809,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/icons/app_icon_1.svg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/icons/app_icon_1.svg" />
     <entry file="file://$PROJECT_DIR$/resources/icons/app_icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -751,7 +823,7 @@
     <entry file="file://$PROJECT_DIR$/src/ru/rpuxa/superwirelessadb/MainView.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="16" lean-forward="true" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding>
             <element signature="e#35#636#0" expanded="true" />
           </folding>
@@ -760,8 +832,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+        <state relative-caret-position="496">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>

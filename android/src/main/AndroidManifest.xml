@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        <activity android:name=".view.activities.MainActivity">
+        <activity
+            android:name=".view.activities.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,13 +28,13 @@
         <service
             android:name=".services.InternalServerService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
-        <activity android:name=".view.activities.InfoActivity"></activity>
+        <activity android:name=".view.activities.InfoActivity" />
+
+        <activity android:name=".view.activities.MainActivity" />
 
         <receiver android:name=".services.AdbReceiver" />
     </application>
-
-    x
 
 </manifest>
