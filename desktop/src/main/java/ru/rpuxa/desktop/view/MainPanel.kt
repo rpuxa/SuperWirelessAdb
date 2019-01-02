@@ -28,7 +28,7 @@ class MainPanel : JPanel() {
 
 
     init {
-        mainSwitch.addItemListener {
+        mainSwitch.addActionListener {
             if (InternalServerController.isServerRunning())
                 InternalServerController.terminateServer()
             else
