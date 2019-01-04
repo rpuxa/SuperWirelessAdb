@@ -135,12 +135,12 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
         dialog.dismiss()
     }
 
-    override fun onConnected(device: WirelessDevice, position: Int) {
+    override fun onConnected(device: WirelessDevice) {
         if (device.passport.id == devicePassport.id)
             connected(device)
     }
 
-    override fun onDisconnected(device: WirelessDevice, position: Int) {
+    override fun onDisconnected(device: WirelessDevice) {
         if (device.passport.id == devicePassport.id)
             disconnected()
     }

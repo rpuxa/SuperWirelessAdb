@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import kotlinx.android.synthetic.main.device_item.view.*
-import ru.rpuxa.internalserver.wireless.AbstractWirelessDevice
 import ru.rpuxa.internalserver.wireless.Passport
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
+import ru.rpuxa.superwirelessadb.wireless.Wireless
 
 class DeviceListAdapter(
-        private val devices: List<AbstractWirelessDevice>,
         private val myDevices: MutableList<Passport>
 ) : RecyclerView.Adapter<DeviceListAdapter.Holder>(),
         WirelessConnection.Listener {
+
+    private val devices = ArrayList<WirelessDevice>(Wireless.devices)
 
     private val handler = Handler()
 
@@ -55,15 +56,25 @@ class DeviceListAdapter(
         }
     }
 
-    override fun onConnected(device: WirelessDevice, position: Int) {
+    override fun onConnected(device: WirelessDevice) {
         handler.post {
-            notifyItemInserted(position)
+            synchronized(devices) {
+                devices.add(device)
+                notifyItemInserted(devices.lastIndex)
+            }
         }
     }
 
-    override fun onDisconnected(device: WirelessDevice, position: Int) {
+    override fun onDisconnected(device: WirelessDevice) {
         handler.post {
-            notifyItemRemoved(position)
+            synchronized(devices) {
+                for (i in devices.indices.reversed())
+                    if (devices[i] == device) {
+                        devices.removeAt(i)
+                        notifyItemRemoved(i)
+                        break
+                    }
+            }
         }
     }
 }

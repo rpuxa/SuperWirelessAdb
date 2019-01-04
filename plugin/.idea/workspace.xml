@@ -16,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -213,7 +213,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -254,7 +254,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -432,11 +432,13 @@
       <workItem from="1546332787688" duration="6696000" />
       <workItem from="1546415886858" duration="970000" />
       <workItem from="1546417490316" duration="24000" />
+      <workItem from="1546496667419" duration="15000" />
+      <workItem from="1546587709391" duration="129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20539000" />
+    <option name="totallyTimeSpent" value="20683000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -449,7 +451,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1088" y="-426" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -494,6 +495,91 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Android/Android Studio/lib/openapi.jar!/com/intellij/openapi/wm/ToolWindowFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <marker date="1528158878000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1528158878000" expanded="false" signature="147:226" ph="..." />
+            <marker date="1528158878000" expanded="true" signature="390:397" ph="{}" />
+            <marker date="1528158878000" expanded="true" signature="462:473" ph=" { " />
+            <marker date="1528158878000" expanded="true" signature="485:491" ph=" }" />
+            <marker date="1528158878000" expanded="false" signature="537:548" ph=" { " />
+            <marker date="1528158878000" expanded="false" signature="561:567" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Android/Android Studio/lib/idea.jar!/com/intellij/notification/EventLog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6368">
+          <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
+          <folding>
+            <marker date="1528158876000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1528158876000" expanded="false" signature="149:2462" ph="..." />
+            <marker date="1528158876000" expanded="true" signature="4437:5199" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="4567:5191" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="4636:5181" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5279:5648" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5768:5844" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="5900:5998" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6079:6200" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6266:6778" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="6876:6940" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="7054:7117" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="7225:10881" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="8621:8861" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="8710:8847" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="9030:9505" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="9132:9491" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="10979:11048" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="11121:11593" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="11691:11873" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="12025:13457" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="13610:14286" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="14488:16961" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="17041:17338" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="17467:19007" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="19137:19675" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="19744:20070" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20144:20258" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20357:20691" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20804:21280" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="20838:21266" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21352:21740" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21814:21914" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="21970:23685" ph="{...}" />
+            <marker date="1528158876000" expanded="false" signature="22130:22145" ph=" { " />
+            <marker date="1528158876000" expanded="false" signature="22180:22190" ph=" }" />
+            <marker date="1528158876000" expanded="true" signature="22267:22334" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="22382:23456" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23525:23679" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23763:24593" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="23935:24026" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24074:24587" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24667:29387" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="24974:25652" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25461:25640" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25534:25626" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="25688:26083" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26121:26296" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26364:26838" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="26951:27353" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27042:27341" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27216:27306" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27445:27853" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27614:27826" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="27923:28299" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="28398:28472" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="28560:28922" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29003:29381" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29422:29907" ph="{...}" />
+            <marker date="1528158876000" expanded="true" signature="29744:29901" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -942,7 +1028,7 @@
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
         </state>
       </provider>

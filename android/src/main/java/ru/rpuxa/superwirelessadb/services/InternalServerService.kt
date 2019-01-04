@@ -9,6 +9,7 @@ import android.os.Process
 import android.os.Process.killProcess
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
+import android.util.Log
 import org.jetbrains.anko.intentFor
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
@@ -155,12 +156,14 @@ class InternalServerService : Service(), WirelessConnection.Listener {
         mNotificationManager.notify(SERVICE_ID, notification(device))
     }
 
-    override fun onConnected(device: WirelessDevice, position: Int) {
+    override fun onConnected(device: WirelessDevice) {
+        Log.d("SWADB", "connected ${device.passport}")
         if (device.passport.id in dataBase.autoConnectedDevices)
             thread { device.connectAdb() }
     }
 
-    override fun onDisconnected(device: WirelessDevice, position: Int) {
+    override fun onDisconnected(device: WirelessDevice) {
+        Log.d("SWADB", "disconnected ${device.passport}")
     }
 
     companion object {

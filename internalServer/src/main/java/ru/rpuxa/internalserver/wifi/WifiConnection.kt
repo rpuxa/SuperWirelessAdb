@@ -1,5 +1,6 @@
 package ru.rpuxa.internalserver.wifi
 
+import java.io.BufferedOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.net.InetAddress
@@ -12,7 +13,7 @@ abstract class WifiConnection(
 ) {
     val running = AtomicBoolean(false)
     private val searchers = ArrayList<Search>()
-    private val devices = ArrayList<WifiDevice>()
+    protected val devices = ArrayList<WifiDevice>()
     val isWifiConnected: Boolean
         get() = searchers.isNotEmpty()
 
@@ -88,5 +89,32 @@ abstract class WifiConnection(
         fun start()
 
         fun stop()
+    }
+
+    protected companion object {
+        private val WIFI_CLIENT_SERVER_IDENTIFIER = /* Random byte array. Dont edit! */
+                "iG4GBsAjlfI0mqQw9jHgG4dTa2Xtov90PcXIsckaru2ncHDbZPZpm1BojlfI0mqQof2fM"
+                        .toByteArray()
+                        .map { it.toInt() }
+                        .toIntArray()
+
+        const val PORT = 7159
+
+        fun checkDevice(output: OutputStream, input: InputStream): Boolean {
+            try {
+                val bufferedOutputStream = BufferedOutputStream(output, WIFI_CLIENT_SERVER_IDENTIFIER.size)
+                for (byte in WIFI_CLIENT_SERVER_IDENTIFIER)
+                    bufferedOutputStream.write(byte)
+                bufferedOutputStream.flush()
+
+                for (i in WIFI_CLIENT_SERVER_IDENTIFIER.indices)
+                    if (input.read() != WIFI_CLIENT_SERVER_IDENTIFIER[i])
+                        return false
+                return true
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return false
+            }
+        }
     }
 }

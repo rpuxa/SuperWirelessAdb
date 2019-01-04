@@ -14,7 +14,7 @@ class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
                     isAdbConnected = data as Boolean
                     NothingReturn
                 }
-                else -> throw IllegalStateException("Unknown command $command")
+                else -> throw IllegalStateException("Unknown command $command, $data")
             }
 
             ans

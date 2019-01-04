@@ -43,6 +43,10 @@ class Passport() : Externalizable {
         return id.hashCode()
     }
 
+    override fun toString(): String {
+        return "Passport(id=$id, name='$name')"
+    }
+
     companion object {
         private const val serialVersionUID = -5723538437214719377L
     }

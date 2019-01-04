@@ -58,17 +58,31 @@ class MyDeviceListAdapter(private val myDevices: MutableList<Passport>) :
         }
     }
 
-    override fun onConnected(device: WirelessDevice, position: Int) {
-        myDevices.find { it.id == device.passport.id }?.name = device.passport.name
+    override fun onConnected(device: WirelessDevice) {
+        var myDevice: Passport? = null
+        var index = -1
 
-        handler.post {
-            notifyItemChanged(position)
+        for (i in myDevices.indices) {
+            if (myDevices[i].id == device.passport.id) {
+                index = i
+                myDevice = myDevices[i]
+            }
+        }
+
+        if (myDevice != null) {
+            myDevice.name = device.passport.name
+
+            handler.post {
+                notifyItemChanged(index)
+            }
         }
     }
 
-    override fun onDisconnected(device: WirelessDevice, position: Int) {
+    override fun onDisconnected(device: WirelessDevice) {
         handler.post {
-            notifyItemChanged(position)
+            val indexOf = myDevices.indexOf(device.passport)
+            if (indexOf != -1)
+                notifyItemChanged(indexOf)
         }
     }
 }

@@ -1,6 +1,5 @@
 package ru.rpuxa.superwirelessadb.wifi
 
-import ru.rpuxa.internalserver.wifi.WifiClient
 import ru.rpuxa.internalserver.wifi.WifiConnectManager
 import ru.rpuxa.internalserver.wifi.WifiConnection
 import ru.rpuxa.internalserver.wifi.WifiException
@@ -33,16 +32,13 @@ class WifiServer(
                 while (running.get()) {
                     try {
                         val inetAddress = InetAddress.getByName(address)
-                        serverSocket = ServerSocket(WifiClient.PORT, 0, inetAddress)
+                        serverSocket = ServerSocket(PORT, 0, inetAddress)
                         while (running.get()) {
                             val socket = serverSocket!!.accept()
                             val input = socket.getInputStream()
                             val output = socket.getOutputStream()
-
-                            thread {
-                                if (WifiClient.checkDevice(output, input))
-                                    addDevice(output, input, inetAddress)
-                            }
+                            if (checkDevice(output, input))
+                                addDevice(output, input, inetAddress)
                         }
                     } catch (e: SocketException) {
                         e.printStackTrace()

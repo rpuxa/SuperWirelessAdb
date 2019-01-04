@@ -2,7 +2,6 @@ package ru.rpuxa.internalserver.wireless
 
 import ru.rpuxa.internalserver.wifi.WifiDevice
 
-@Suppress("EqualsOrHashCode")
 abstract class AbstractWirelessDevice(val wifiDevice: WifiDevice) : WirelessDevice {
 
     override lateinit var passport: Passport
@@ -41,6 +40,10 @@ abstract class AbstractWirelessDevice(val wifiDevice: WifiDevice) : WirelessDevi
         if (other !is AbstractWirelessDevice) return false
 
         return other.wifiDevice.lastAddressByte == wifiDevice.lastAddressByte
+    }
+
+    override fun hashCode(): Int {
+        return wifiDevice.lastAddressByte
     }
 }
 

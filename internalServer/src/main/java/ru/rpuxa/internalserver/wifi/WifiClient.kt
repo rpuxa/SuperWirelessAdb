@@ -1,9 +1,6 @@
 package ru.rpuxa.internalserver.wifi
 
-import java.io.BufferedOutputStream
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -32,11 +29,13 @@ class WifiClient(
                     if (byte != address[3].toInt())
                         thread {
                             while (running.get()) {
-                                val newAddress = address.clone()
-                                newAddress[3] = byte.toByte()
-                                val inetAddress = InetAddress.getByAddress(newAddress)
-                                if (inetAddress.isReachable(1000))
-                                    checkAddress(inetAddress)
+                                if (!devices.any { it.lastAddressByte == byte }) {
+                                    val newAddress = address.clone()
+                                    newAddress[3] = byte.toByte()
+                                    val inetAddress = InetAddress.getByAddress(newAddress)
+                                    if (inetAddress.isReachable(1000))
+                                        checkAddress(inetAddress)
+                                }
                                 Thread.sleep(500)
                             }
                         }
@@ -56,40 +55,12 @@ class WifiClient(
         private fun checkAddress(address: InetAddress) {
             try {
                 val socket = Socket()
-                socket.connect(InetSocketAddress(address, PORT), 500)
+                socket.connect(InetSocketAddress(address, PORT), 2000)
                 val output = socket.getOutputStream()
                 val input = socket.getInputStream()
                 if (checkDevice(output, input))
                     addDevice(output, input, address)
-            } catch (e: Exception) {
-            }
-        }
-    }
-
-
-    companion object {
-        private val WIFI_CLIENT_SERVER_IDENTIFIER = /* Random byte array. Dont edit! */
-                "iG4GBsAjlfI0mqQw9jHgG4dTa2Xtov90PcXIsckaru2ncHDbZPZpm1BojlfI0mqQof2fM"
-                        .toByteArray()
-                        .map { it.toInt() }
-                        .toIntArray()
-
-        const val PORT = 7159
-
-        fun checkDevice(output: OutputStream, input: InputStream): Boolean {
-            try {
-                val bufferedOutputStream = BufferedOutputStream(output, WIFI_CLIENT_SERVER_IDENTIFIER.size)
-                for (byte in WIFI_CLIENT_SERVER_IDENTIFIER)
-                    bufferedOutputStream.write(byte)
-                bufferedOutputStream.flush()
-
-                for (i in WIFI_CLIENT_SERVER_IDENTIFIER.indices)
-                    if (input.read() != WIFI_CLIENT_SERVER_IDENTIFIER[i])
-                        return false
-                return true
-            } catch (e: Exception) {
-                e.printStackTrace()
-                return false
+            } catch (e: IOException) {
             }
         }
     }

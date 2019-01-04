@@ -13,7 +13,7 @@ import ru.rpuxa.superwirelessadb.wireless.Wireless
 
 class MainActivity : AppCompatActivity() {
 
-    private val devicesAdapter by lazy { DeviceListAdapter(Wireless.devices, dataBase.myDevices) }
+    private val devicesAdapter by lazy { DeviceListAdapter(dataBase.myDevices) }
 
     private val myDevicesAdapter by lazy { MyDeviceListAdapter(dataBase.myDevices) }
 
