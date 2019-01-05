@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.adapters
 
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -13,10 +13,10 @@ import ru.rpuxa.internalserver.wireless.Passport
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
-import ru.rpuxa.superwirelessadb.view.activities.InfoActivity
+import ru.rpuxa.superwirelessadb.activities.InfoActivity
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 
-class MyDeviceListAdapter(private val myDevices: MutableList<Passport>) :
+class MyDeviceListAdapter(private val myDevices: List<Passport>) :
         RecyclerView.Adapter<MyDeviceListAdapter.Holder>(),
         WirelessConnection.Listener {
 
@@ -48,7 +48,9 @@ class MyDeviceListAdapter(private val myDevices: MutableList<Passport>) :
         holder.name.text = passport.name
 
         holder.view.setOnClickListener {
-            holder.view.context.startActivity<InfoActivity>(InfoActivity.DEVICE_PASSPORT to passport)
+            holder.view.context.startActivity<InfoActivity>(
+                    InfoActivity.DEVICE_PASSPORT to passport
+            )
         }
     }
 
@@ -58,31 +60,22 @@ class MyDeviceListAdapter(private val myDevices: MutableList<Passport>) :
         }
     }
 
-    override fun onConnected(device: WirelessDevice) {
-        var myDevice: Passport? = null
-        var index = -1
-
+    private fun deviceChanged(device: WirelessDevice) {
         for (i in myDevices.indices) {
             if (myDevices[i].id == device.passport.id) {
-                index = i
-                myDevice = myDevices[i]
-            }
-        }
-
-        if (myDevice != null) {
-            myDevice.name = device.passport.name
-
-            handler.post {
-                notifyItemChanged(index)
+                handler.post {
+                    notifyItemChanged(i)
+                }
+                break
             }
         }
     }
 
+    override fun onConnected(device: WirelessDevice) {
+        deviceChanged(device)
+    }
+
     override fun onDisconnected(device: WirelessDevice) {
-        handler.post {
-            val indexOf = myDevices.indexOf(device.passport)
-            if (indexOf != -1)
-                notifyItemChanged(indexOf)
-        }
+        deviceChanged(device)
     }
 }

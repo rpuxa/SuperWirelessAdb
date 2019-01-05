@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.dialogs
 
 import android.app.AlertDialog
 import android.app.FragmentManager
@@ -33,7 +33,7 @@ class OnErrorDialog(
             if (code == 10061) {
                 error_fix.setOnClickListener {
                     val loadingDialog = LoadingDialog().apply {
-                        arguments = bundleOf(LoadingDialog.LOADING_TEXT to "Чиним")
+                        arguments = bundleOf(LoadingDialog.LOADING_TEXT to getString(R.string.fixing))
                         show(fm, "ld")
                     }
                     thread {
@@ -42,16 +42,16 @@ class OnErrorDialog(
                                     context.runOnUiThread {
                                         if (fixed) {
                                             loadingDialog.dismiss()
-                                            Handler().postDelayed({ dismiss() }, 500)
+                                            Handler().postDelayed({ this@OnErrorDialog.dismiss() }, 500)
                                         } else {
-                                            error_message.text = "Убедитесь, что вы подключили устройство по USB"
+                                            error_message.text = getString(R.string.fix_error)
                                             loadingDialog.dismiss()
                                         }
                                     }
                                 }
                                 .onError {
                                     context.runOnUiThread {
-                                        context.toast("Неизвестная ошибка")
+                                        context.toast(getString(R.string.unknown_error))
                                         loadingDialog.dismiss()
                                     }
                                 }

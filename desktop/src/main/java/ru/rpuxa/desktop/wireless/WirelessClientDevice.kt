@@ -20,7 +20,7 @@ class WirelessClientDevice(device: WifiDevice) : AbstractWirelessDevice(device) 
                 }
                 GET_DEVICE_PASSPORT -> InternalServerController.passport
                 FIX_10061 -> Adb.fix10061(wifiDevice.ip)
-                else -> throw IllegalStateException("Unknown command")
+                else -> throw IllegalStateException("Unknown command $command - $data")
             }
 
             ans

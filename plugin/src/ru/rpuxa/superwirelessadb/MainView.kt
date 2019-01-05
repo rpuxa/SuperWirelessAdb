@@ -1,6 +1,5 @@
 package ru.rpuxa.superwirelessadb
 
-import com.android.tools.idea.resourceExplorer.plugin.logger
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
@@ -24,7 +23,7 @@ class MainView : ToolWindowFactory {
     override fun shouldBeAvailable(project: Project): Boolean {
         Adb.adbPathGetter = { AndroidSdkUtils.getAdb(project)!!.parent }
         setLogger { msg: String ->
-            val notification = Notification("123", "Super Wireless ADB", msg, NotificationType.INFORMATION)
+            val notification = Notification("SWADB", "Super Wireless ADB", msg, NotificationType.INFORMATION)
             Notifications.Bus.notify(notification)
         }
         return true
@@ -34,7 +33,7 @@ class MainView : ToolWindowFactory {
         val contentFactory = ContentFactory.SERVICE.getInstance()
         val content = contentFactory.createContent(
                 MainPanel(),
-                "Super wireless ADB",
+                "",
                 false
         )
 

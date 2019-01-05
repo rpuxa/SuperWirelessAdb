@@ -25,8 +25,8 @@ class WifiClient(
             try {
                 val address = InetAddress.getByName(address).address
 
-                for (byte in 1..254) {
-                    if (byte != address[3].toInt())
+                for (byte in LAST_IP_BYTE_RANGE) {
+                    if (byte != address.last().toInt())
                         thread {
                             while (running.get()) {
                                 if (!devices.any { it.lastAddressByte == byte }) {
@@ -63,5 +63,10 @@ class WifiClient(
             } catch (e: IOException) {
             }
         }
+    }
+
+    companion object {
+        @JvmStatic
+        private val LAST_IP_BYTE_RANGE = 1..254
     }
 }

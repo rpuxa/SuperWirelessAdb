@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.other
 
 import android.content.Context
 import android.os.Build
@@ -6,13 +6,15 @@ import ru.rpuxa.internalserver.wireless.Passport
 import java.util.*
 import kotlin.collections.ArrayList
 
+private var dataBaseBackingField: IDataBase? = null
+
 val Context.dataBase: IDataBase
     get() {
-        if (_dataBase == null) {
+        if (dataBaseBackingField == null) {
             val load = StringSerializable.load(DATA_BASE_SAVE_NAME, this) ?: DataBaseImpl()
-            _dataBase = load as IDataBase
+            dataBaseBackingField = load as IDataBase
         }
-        return _dataBase!!
+        return dataBaseBackingField!!
     }
 
 interface IDataBase : StringSerializable {
@@ -23,12 +25,10 @@ interface IDataBase : StringSerializable {
 
     val autoConnectedDevices: MutableSet<Long>
 
-    var runServiceInBackground: Boolean
+    var isServiceRunInBackground: Boolean
 
     fun save(context: Context)
 }
-
-private var _dataBase: IDataBase? = null
 
 private class DataBaseImpl : IDataBase {
     override val passport = Passport(
@@ -40,7 +40,7 @@ private class DataBaseImpl : IDataBase {
 
     override val autoConnectedDevices = HashSet<Long>()
 
-    override var runServiceInBackground = true
+    override var isServiceRunInBackground = true
 
     override fun save(context: Context) {
         save(context, DATA_BASE_SAVE_NAME)

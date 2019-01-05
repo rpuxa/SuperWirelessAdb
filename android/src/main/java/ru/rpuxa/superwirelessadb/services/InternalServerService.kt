@@ -14,17 +14,17 @@ import org.jetbrains.anko.intentFor
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
-import ru.rpuxa.superwirelessadb.view.activities.InfoActivity
-import ru.rpuxa.superwirelessadb.view.activities.MainActivity
-import ru.rpuxa.superwirelessadb.view.dataBase
+import ru.rpuxa.superwirelessadb.activities.InfoActivity
+import ru.rpuxa.superwirelessadb.activities.MainActivity
+import ru.rpuxa.superwirelessadb.other.dataBase
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 import kotlin.concurrent.thread
 
 class InternalServerService : Service(), WirelessConnection.Listener {
 
-    private val channelId by lazy {
+    private val channelId: String by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel("super_wireless_adb", "Super wireless ADB")
+            createNotificationChannel(CHANNEL_ID, getString(R.string.app_name))
         } else {
             ""
         }
@@ -84,14 +84,14 @@ class InternalServerService : Service(), WirelessConnection.Listener {
         setOngoing(true)
         setSmallIcon(R.drawable.connect_adb)
         setCategory(Notification.CATEGORY_SERVICE)
-        setContentTitle("Super wireless ADB")
+        setContentTitle(getString(R.string.app_name))
         val adbConnected = device?.isAdbConnected
         val text =
                 when {
-                    !Wireless.server.isWifiConnected -> "Вы не подключены к WiFi"
-                    adbConnected == null -> "Ближайших устройств не найдено"
-                    !adbConnected -> "Обнаружен компьютер ${device.passport.name}"
-                    else -> "Соединение ADB с ${device.passport.name} установлено"
+                    !Wireless.server.isWifiConnected -> getString(R.string.not_connected_to_wifi)
+                    adbConnected == null -> getString(R.string.devices_not_found)
+                    !adbConnected -> getString(R.string.device_found) + device.passport.name
+                    else -> getString(R.string.device_found).format(device.passport.name)
                 }
 
         setContentText(text)
@@ -107,7 +107,7 @@ class InternalServerService : Service(), WirelessConnection.Listener {
                     PendingIntent.FLAG_UPDATE_CURRENT
             )
 
-            addAction(R.drawable.connect_adb, "Подключить ADB", broadcast)
+            addAction(R.drawable.connect_adb, getString(R.string.connect_adb), broadcast)
         }
         val intent = if (device == null)
             intentFor<MainActivity>()
@@ -130,7 +130,7 @@ class InternalServerService : Service(), WirelessConnection.Listener {
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
-        if (!dataBase.runServiceInBackground) {
+        if (!dataBase.isServiceRunInBackground) {
             stopSelf(SERVICE_ID)
         }
     }
@@ -160,6 +160,10 @@ class InternalServerService : Service(), WirelessConnection.Listener {
         Log.d("SWADB", "connected ${device.passport}")
         if (device.passport.id in dataBase.autoConnectedDevices)
             thread { device.connectAdb() }
+
+        dataBase.myDevices.find { it.id == device.passport.id }?.let {
+            it.name = device.passport.name
+        }
     }
 
     override fun onDisconnected(device: WirelessDevice) {
@@ -168,5 +172,6 @@ class InternalServerService : Service(), WirelessConnection.Listener {
 
     companion object {
         const val SERVICE_ID = -915561234
+        private const val CHANNEL_ID = "super_wireless_adb"
     }
 }

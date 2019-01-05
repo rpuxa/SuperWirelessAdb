@@ -3,11 +3,11 @@ package ru.rpuxa.superwirelessadb.wireless
 import android.content.Context
 import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
-import ru.rpuxa.superwirelessadb.view.dataBase
+import ru.rpuxa.superwirelessadb.other.dataBase
 
 object Wireless {
 
-    fun device(deviceId: Long): WirelessDevice? =
+    fun getDeviceById(deviceId: Long): WirelessDevice? =
             devices.find { it.passport.id == deviceId }
 
     fun myOnlineDevices(context: Context): List<WirelessDevice> {

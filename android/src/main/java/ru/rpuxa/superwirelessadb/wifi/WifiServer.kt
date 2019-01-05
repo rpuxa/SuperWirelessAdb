@@ -38,7 +38,7 @@ class WifiServer(
                             val input = socket.getInputStream()
                             val output = socket.getOutputStream()
                             if (checkDevice(output, input))
-                                addDevice(output, input, inetAddress)
+                                addDevice(output, input, socket.inetAddress)
                         }
                     } catch (e: SocketException) {
                         e.printStackTrace()

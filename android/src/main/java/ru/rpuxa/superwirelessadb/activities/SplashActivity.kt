@@ -1,9 +1,9 @@
-package ru.rpuxa.superwirelessadb.view.activities
+package ru.rpuxa.superwirelessadb.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.startActivity
-import ru.rpuxa.superwirelessadb.view.dataBase
+import ru.rpuxa.superwirelessadb.other.dataBase
 
 class SplashActivity : AppCompatActivity() {
 

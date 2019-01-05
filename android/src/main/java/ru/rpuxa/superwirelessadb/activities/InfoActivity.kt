@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view.activities
+package ru.rpuxa.superwirelessadb.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -14,9 +14,9 @@ import ru.rpuxa.internalserver.wireless.WirelessConnection
 import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.internalserver.wireless.WirelessPromise
 import ru.rpuxa.superwirelessadb.R
-import ru.rpuxa.superwirelessadb.view.LoadingDialog
-import ru.rpuxa.superwirelessadb.view.OnErrorDialog
-import ru.rpuxa.superwirelessadb.view.dataBase
+import ru.rpuxa.superwirelessadb.dialogs.LoadingDialog
+import ru.rpuxa.superwirelessadb.dialogs.OnErrorDialog
+import ru.rpuxa.superwirelessadb.other.dataBase
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 
 class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
@@ -37,23 +37,25 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
             doAsync {
                 val isAdbConnected = is_adb_connected.isChecked
                 val dialog = LoadingDialog()
-                dialog.arguments = bundleOf(LoadingDialog.LOADING_TEXT to if (isAdbConnected) "Отключение" else "Подключение")
-                dialog.show(fragmentManager, "loading_dialog")
+                dialog.arguments = bundleOf(
+                        LoadingDialog.LOADING_TEXT to if (isAdbConnected) getString(R.string.disconnect) else getString(R.string.connect)
+                )
+                dialog.show(fragmentManager, LOADING_DIALOG_TAG)
 
                 fun WirelessPromise<*>.onError() {
                     onError {
-                        runOnUiThread { toast("Ошибка, попробуйте еще раз") }
+                        runOnUiThread { toast(getString(R.string.error_try_again)) }
                         dialog.dismiss()
                     }
                 }
 
-                val device = Wireless.device(devicePassport.id)!!
+                val device = Wireless.getDeviceById(devicePassport.id)!!
 
                 if (isAdbConnected) {
                     device.disconnectAdb()
                             .onAnswer {
                                 runOnUiThread {
-                                    toast("Отключено!")
+                                    toast(getString(R.string.disconnected))
                                     dialog.dismiss()
                                 }
                             }
@@ -89,7 +91,7 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
             startActivity<MainActivity>()
         }
 
-        val device = Wireless.device(devicePassport.id)
+        val device = Wireless.getDeviceById(devicePassport.id)
 
         if (device == null)
             disconnected()
@@ -103,7 +105,6 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
 
     private fun connected(device: WirelessDevice) {
         runOnUiThread {
-            dataBase.myDevices.find { device.passport.id == device.passport.id }!!.name = device.passport.name
             info_device_name.text = device.passport.name
             is_adb_connected.isEnabled = true
             info_online_dot.visibility = View.VISIBLE
@@ -124,8 +125,8 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
 
     private fun onConnectAdb(code: Int, dialog: LoadingDialog, device: WirelessDevice) {
         when {
-            code == 0 -> toast("Подключено")
-            code < 0 -> toast("Неизвестная ошибка")
+            code == 0 -> toast(getString(R.string.connected))
+            code < 0 -> toast(getString(R.string.unknown_error))
             else -> {
                 dialog.dismiss()
                 OnErrorDialog(code, device, fragmentManager, this).show()
@@ -150,8 +151,8 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
         super.onPause()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         Wireless.server.removeListener(this)
     }
 
@@ -162,5 +163,6 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
 
     companion object {
         const val DEVICE_PASSPORT = "id"
+        private const val LOADING_DIALOG_TAG = "loading_dialog"
     }
 }

@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.adapters
 
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -14,9 +14,9 @@ import ru.rpuxa.internalserver.wireless.WirelessDevice
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 
-class DeviceListAdapter(
+class NearestDeviceListAdapter(
         private val myDevices: MutableList<Passport>
-) : RecyclerView.Adapter<DeviceListAdapter.Holder>(),
+) : RecyclerView.Adapter<NearestDeviceListAdapter.Holder>(),
         WirelessConnection.Listener {
 
     private val devices = ArrayList<WirelessDevice>(Wireless.devices)

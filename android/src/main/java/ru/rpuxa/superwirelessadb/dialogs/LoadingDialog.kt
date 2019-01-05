@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.dialogs
 
 import android.app.DialogFragment
 import android.content.DialogInterface

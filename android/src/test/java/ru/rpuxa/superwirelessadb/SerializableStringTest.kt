@@ -2,7 +2,7 @@ package ru.rpuxa.superwirelessadb
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.rpuxa.superwirelessadb.view.StringSerializable
+import ru.rpuxa.superwirelessadb.other.StringSerializable
 
 /**
  * Example local unit test, which will execute on the development machine (host).

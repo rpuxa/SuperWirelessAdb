@@ -1,4 +1,4 @@
-package ru.rpuxa.superwirelessadb.view
+package ru.rpuxa.superwirelessadb.other
 
 import android.app.Application
 import android.content.ComponentCallbacks2
@@ -9,6 +9,7 @@ import ru.rpuxa.superwirelessadb.services.InternalServerService
 import ru.rpuxa.superwirelessadb.wireless.Wireless
 import ru.rpuxa.superwirelessadb.wireless.WirelessServer
 
+@Suppress("unused")
 class App : Application(), ComponentCallbacks2 {
 
     override fun onCreate() {
