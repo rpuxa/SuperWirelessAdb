@@ -13,7 +13,7 @@
     <string name="fixing">Чиним</string>
     <string name="not_connected_to_wifi">Вы не подключены к WiFi</string>
     <string name="devices_not_found">Ближайших устройств не найдено</string>
-    <string name="device_found">Обнаружено устройство</string>
+    <string name="device_found">Обнаружено устройство %1$s</string>
     <string name="adb_connected_with">"Соединение ADB с %1$s установлено"</string>
     <string name="connect_adb">Подключить ADB</string>
     <string name="is_adb_connected">ADB подключен</string>

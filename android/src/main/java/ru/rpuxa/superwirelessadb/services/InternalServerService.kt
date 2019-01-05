@@ -90,12 +90,12 @@ class InternalServerService : Service(), WirelessConnection.Listener {
                 when {
                     !Wireless.server.isWifiConnected -> getString(R.string.not_connected_to_wifi)
                     adbConnected == null -> getString(R.string.devices_not_found)
-                    !adbConnected -> getString(R.string.device_found) + device.passport.name
-                    else -> getString(R.string.device_found).format(device.passport.name)
+                    !adbConnected -> getString(R.string.device_found).format(device.passport.name)
+                    else -> getString(R.string.adb_connected_with).format(device.passport.name)
                 }
 
         setContentText(text)
-
+        0
         if (adbConnected == false) {
             val intent = intentFor<AdbReceiver>(
                     AdbReceiver.DEVICE_ID to device.passport.id
