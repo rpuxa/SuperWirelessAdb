@@ -1,5 +1,38 @@
 <resources>
     <string name="app_name">Super wireless ADB</string>
+    <string name="my_computers">My devices</string>
+    <string name="nearest_computers">Nearest devices</string>
+    <string name="settings">Settings</string>
+    <string name="disconnect">Disconnecting</string>
+    <string name="connect">Connecting</string>
+    <string name="error_try_again">Error, please try again</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="connected">Connected</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="fix_error">Make sure that device have been connected via USB</string>
+    <string name="fixing">Fixing</string>
+    <string name="not_connected_to_wifi">You are not connected to WiFi</string>
+    <string name="devices_not_found">My devices not found</string>
+    <string name="device_found">Founded device %1$s</string>
+    <string name="adb_connected_with">"ADB connection to %1$s established"</string>
+    <string name="connect_adb">Connect ADB</string>
+    <string name="is_adb_connected">ADB connected</string>
+    <string name="auto_connect">Auto connect ADB</string>
+    <string name="delete_from_my_devices">Delete from my devices</string>
+    <string name="info">Info</string>
+    <string name="adb_error_message1">Error connecting ADB</string>
+    <string name="error_code">Error code</string>
+    <string name="fix">Fix</string>
+    <string name="back">Back</string>
+    <string name="adb_error_message2">Connect device via USB to fix error</string>
+    <string name="run_in_background">Keep service in background after closing app</string>
+    <string name="name">Name</string>
+    <string name="add_to_my_devices">Add to my devices</string>
+</resources>
+
+
+    <!--
+    <string name="app_name">Super wireless ADB</string>
     <string name="my_computers">Мои устройства</string>
     <string name="nearest_computers">Ближайшие устройства</string>
     <string name="settings">Настройки</string>
@@ -12,20 +45,20 @@
     <string name="fix_error">Убедитесь, что вы подключили устройство по USB</string>
     <string name="fixing">Чиним</string>
     <string name="not_connected_to_wifi">Вы не подключены к WiFi</string>
-    <string name="devices_not_found">Ближайших устройств не найдено</string>
+    <string name="devices_not_found">Моих устройств не обнаружено</string>
     <string name="device_found">Обнаружено устройство %1$s</string>
     <string name="adb_connected_with">"Соединение ADB с %1$s установлено"</string>
     <string name="connect_adb">Подключить ADB</string>
     <string name="is_adb_connected">ADB подключен</string>
     <string name="auto_connect">Автоподключение ADB</string>
-    <string name="delete_from_my_devices">Удалить из моих компьютеров</string>
+    <string name="delete_from_my_devices">Удалить из моих устройств</string>
     <string name="info">Информация</string>
     <string name="adb_error_message1">Произошла ошибка подключения ADB</string>
     <string name="error_code">Код ошибки</string>
     <string name="fix">Исправить</string>
     <string name="back">Назад</string>
     <string name="adb_error_message2">Мы можем исправить ее автоматически, для этого подключите устройство через USB</string>
-    <string name="run_in_background">Запускать сервис в фоновом режиме</string>
+    <string name="run_in_background">Оставить службу в фоновом режиме после закрытия приложения</string>
     <string name="name">Название</string>
     <string name="add_to_my_devices">Добавить в мои устройства</string>
-</resources>
+    -->

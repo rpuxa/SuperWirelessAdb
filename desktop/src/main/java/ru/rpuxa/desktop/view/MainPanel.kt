@@ -2,16 +2,21 @@ package ru.rpuxa.desktop.view
 
 import ru.rpuxa.desktop.wireless.InternalServerController
 import java.awt.Component
-import javax.swing.BoxLayout
-import javax.swing.JCheckBox
-import javax.swing.JPanel
+import java.awt.Cursor
+import java.awt.Desktop
+import java.awt.event.MouseEvent
+import java.awt.event.MouseListener
+import java.net.URI
+import javax.swing.*
 import kotlin.concurrent.thread
 
 class MainPanel : JPanel() {
 
     private val mainSwitch = JCheckBox("Enable Super wireless ADB")
-    private val autoLoading = JCheckBox("Enable Super wireless ADB with Android Studio")
+    private val autoLoading = JCheckBox("Enable with Android Studio")
     private val namePicker = NamePicker()
+    private val gitLabel = JLabel("Check README on github")
+    private val gitLink = JLabel("<html><u>$GITHUB_LINK")
 
     init {
         layout = BoxLayout(this, BoxLayout.Y_AXIS)
@@ -24,6 +29,15 @@ class MainPanel : JPanel() {
 
         namePicker.alignmentX = Component.LEFT_ALIGNMENT
         add(namePicker)
+
+        add(Box.createVerticalStrut(40))
+
+        gitLabel.alignmentX = Component.LEFT_ALIGNMENT
+        add(gitLabel)
+
+        gitLink.alignmentX = Component.LEFT_ALIGNMENT
+        gitLink.cursor = Cursor(Cursor.HAND_CURSOR)
+        add(gitLink)
     }
 
 
@@ -41,11 +55,35 @@ class MainPanel : JPanel() {
             InternalServerController.autoLoading = autoLoading.isSelected
         }
 
+        gitLink.addMouseListener(object : MouseListener {
+            override fun mouseReleased(p0: MouseEvent?) {
+            }
+
+            override fun mouseEntered(p0: MouseEvent?) {
+            }
+
+            override fun mouseClicked(p0: MouseEvent?) {
+                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                    Desktop.getDesktop().browse(URI(GITHUB_LINK))
+                }
+            }
+
+            override fun mouseExited(p0: MouseEvent?) {
+            }
+
+            override fun mousePressed(p0: MouseEvent?) {
+            }
+        })
+
         thread {
             while (true) {
                 mainSwitch.isSelected = InternalServerController.isServerRunning()
                 Thread.sleep(1000)
             }
         }
+    }
+
+    companion object {
+        const val GITHUB_LINK = "https://www.github.com/rpuxa/SuperWirelessADB"
     }
 }

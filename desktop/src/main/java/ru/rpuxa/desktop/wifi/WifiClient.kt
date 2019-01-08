@@ -1,5 +1,8 @@
-package ru.rpuxa.internalserver.wifi
+package ru.rpuxa.desktop.wifi
 
+import ru.rpuxa.internalserver.wifi.WifiConnectManager
+import ru.rpuxa.internalserver.wifi.WifiConnection
+import ru.rpuxa.internalserver.wifi.WifiException
 import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
@@ -9,7 +12,7 @@ import kotlin.concurrent.thread
 
 class WifiClient(
         wifiConnectManager: WifiConnectManager,
-        listener: WifiConnection.Listener? = null
+        listener: Listener? = null
 ) : WifiConnection(wifiConnectManager, listener) {
 
     override fun search(address: String): Search = SearchServer(address)
@@ -28,11 +31,11 @@ class WifiClient(
                 for (byte in LAST_IP_BYTE_RANGE) {
                     if (byte != address.last().toInt())
                         thread {
+                            val newAddress = address.clone()
+                            newAddress[3] = byte.toByte()
+                            val inetAddress = InetAddress.getByAddress(newAddress)
                             while (running.get()) {
                                 if (!devices.any { it.lastAddressByte == byte }) {
-                                    val newAddress = address.clone()
-                                    newAddress[3] = byte.toByte()
-                                    val inetAddress = InetAddress.getByAddress(newAddress)
                                     if (inetAddress.isReachable(1000))
                                         checkAddress(inetAddress)
                                 }

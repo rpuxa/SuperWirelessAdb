@@ -1,6 +1,6 @@
 package ru.rpuxa.desktop.wireless
 
-import ru.rpuxa.internalserver.wifi.WifiClient
+import ru.rpuxa.desktop.wifi.WifiClient
 import ru.rpuxa.internalserver.wifi.WifiConnectManagerImpl
 import ru.rpuxa.internalserver.wifi.WifiDevice
 import ru.rpuxa.internalserver.wireless.AbstractWirelessDevice

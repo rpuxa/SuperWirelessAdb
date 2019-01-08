@@ -39,10 +39,11 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
                         println("in $msg")
                         val promise = promises.remove(msg.id)
                         if (promise == null) {
-                            thread {
-                                val ans = listener.invoke(msg.command, msg.data)
-                                send(Message(msg.id, -1, ans))
-                            }
+                            if (msg.command != ANSWER)
+                                thread {
+                                    val ans = listener(msg.command, msg.data)
+                                    send(Message(msg.id, ANSWER, ans))
+                                }
                         } else {
                             promise.message(msg.data)
                         }
@@ -162,6 +163,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
         private const val TIMEOUT = 300
         private val random = Random()
         private val CHECK_MESSAGE = Message(-1488228, -1, null)
+        private const val ANSWER = -1
     }
 
 }
