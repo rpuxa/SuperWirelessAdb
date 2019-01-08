@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_computers">Мои устройства</string>
+    <string name="nearest_computers">Ближайшие устройства</string>
+    <string name="settings">Настройки</string>
+    <string name="disconnect">Отключение</string>
+    <string name="connect">Подключение</string>
+    <string name="error_try_again">Ошибка, попробуйте еще раз</string>
+    <string name="disconnected">Отключено</string>
+    <string name="connected">Подключено</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="fix_error">Убедитесь, что вы подключили устройство по USB</string>
+    <string name="fixing">Чиним</string>
+    <string name="not_connected_to_wifi">Вы не подключены к WiFi</string>
+    <string name="devices_not_found">Моих устройств не обнаружено</string>
+    <string name="device_found">Обнаружено устройство %1$s</string>
+    <string name="adb_connected_with">"Соединение ADB с %1$s установлено"</string>
+    <string name="connect_adb">Подключить ADB</string>
+    <string name="is_adb_connected">ADB подключен</string>
+    <string name="auto_connect">Автоподключение ADB</string>
+    <string name="delete_from_my_devices">Удалить из моих устройств</string>
+    <string name="info">Информация</string>
+    <string name="adb_error_message1">Произошла ошибка подключения ADB</string>
+    <string name="error_code">Код ошибки</string>
+    <string name="fix">Исправить</string>
+    <string name="back">Назад</string>
+    <string name="adb_error_message2">Мы можем исправить ее автоматически, для этого подключите устройство через USB</string>
+    <string name="run_in_background">Оставить службу в фоновом режиме после закрытия приложения</string>
+    <string name="name">Название</string>
+    <string name="add_to_my_devices">Добавить в мои устройства</string>
+    <string name="check_readme">Прочитайте README на github</string>
+</resources>

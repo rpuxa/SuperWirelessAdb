@@ -2,21 +2,26 @@
     <id>ru.rpuxa.superwirelessadb</id>
     <name>Super Wireless ADB</name>
     <version>1.0.0</version>
-    <vendor email="gr0070@mail.ru" url="http://www.vk.com/grishayurkov">rpuxa</vendor>
+    <vendor email="gr0070@mail.ru" url="https://github.com/rpuxa/SuperWirelessAdb">rpuxa</vendor>
 
     <description><![CDATA[
-      Wifi adb.<br>
+      Super wireless ADB - plugin that helps you to connect
+      ADB via WiFi absolutely without USB cable! Even at
+       first connection plugin does not require USB, all
+        you need is connect PC and android device to the
+        same Wifi network!
     ]]></description>
 
     <change-notes><![CDATA[
-      Release plugin!.<br>
+      Initial release.<br>
     ]]>
     </change-notes>
 
 
-    <idea-version since-build="141.0" />
+    <idea-version since-build="131" />
 
     <extensions defaultExtensionNs="com.intellij">
+        <defaultProjectTypeProvider type="Android" />
         <toolWindow anchor="right" factoryClass="ru.rpuxa.superwirelessadb.MainView"
             icon="/icons/app_icon.svg" id="Super wireless ADB" order="first" secondary="true" />
     </extensions>

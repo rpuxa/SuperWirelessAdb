@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name="ru.rpuxa.superwirelessadb.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,9 +29,9 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name="ru.rpuxa.superwirelessadb.activities.InfoActivity" />
+        <activity android:name=".activities.InfoActivity" />
 
-        <activity android:name="ru.rpuxa.superwirelessadb.activities.MainActivity" />
+        <activity android:name=".activities.MainActivity" />
 
         <receiver android:name=".services.AdbReceiver" />
     </application>

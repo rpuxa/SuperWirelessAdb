@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.device_list.*
 import kotlinx.android.synthetic.main.settings.*
+import org.jetbrains.anko.browse
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.adapters.AdapterListener
 import ru.rpuxa.superwirelessadb.adapters.MyDeviceListAdapter
@@ -73,6 +74,10 @@ class MainActivity : AppCompatActivity() {
 
         start_in_background.setOnClickListener {
             dataBase.isServiceRunInBackground = start_in_background.isChecked
+        }
+
+        github_link.setOnClickListener {
+            browse(getString(R.string.github_link), true)
         }
     }
 
