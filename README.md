@@ -5,8 +5,8 @@ Even at first connection plugin does not require USB, all you need is connect PC
 
 ## Plugin
 ### Installation
-Download from [github](https://github.com/rpuxa/SuperWirelessAdb/tree/master/DOWNLOAD)\n
-or\n
+Download from [github](https://github.com/rpuxa/SuperWirelessAdb/tree/master/DOWNLOAD)
+or
 install in Android Studio -> Settings -> Plugins -> Browse repositories -> Super wireless ADB
 ### Usage
 **Enable Super wireless ADB** - enable visibility. Now you can detect this pc on your android device
