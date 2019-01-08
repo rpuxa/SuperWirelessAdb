@@ -24,7 +24,7 @@ Download from [github](https://github.com/rpuxa/SuperWirelessAdb/tree/master/DOW
 4. Now you can connect ADB or enable auto connect ADB (device will connect ADB when PC is detected). You can also connect ADB using notification<br><br>
 <img src="./screenshots/3.png" width="150px">  <img src="./screenshots/4.png" width="150px">  <img src="./screenshots/5.png" width="150px">  <img src="./screenshots/6.png" width="150px">
 
-##Contacts
-E-mail: gr0070@mail.ru
-[github](https://github.com/rpuxa)
-[vkontakte](https://vk.com/grishayurkov)
+## Contacts
+E-mail: gr0070@mail.ru<br>
+[Github](https://github.com/rpuxa)<br>
+[Vk](https://vk.com/grishayurkov)
