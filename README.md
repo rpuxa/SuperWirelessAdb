@@ -1,6 +1,6 @@
 # Super wireless ADB
 
-Super wireless ADB - plugin that help you connect ADB via WiFi absolutely without USB cable!
+Super wireless ADB - plugin that helps you to connect ADB via WiFi absolutely without USB cable!
 Even at first connection plugin does not require USB, all you need is connect PC and android device to the same Wifi network!
 
 ## Plugin
