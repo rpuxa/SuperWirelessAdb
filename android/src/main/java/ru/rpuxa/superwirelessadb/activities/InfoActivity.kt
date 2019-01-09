@@ -85,6 +85,7 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
             for (i in myDevices.indices) {
                 if (myDevices[i].id == devicePassport.id) {
                     myDevices.removeAt(i)
+                    dataBase.autoConnectedDevices.remove(devicePassport.id)
                     break
                 }
             }

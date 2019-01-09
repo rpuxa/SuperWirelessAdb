@@ -29,4 +29,7 @@
     <string name="name">Название</string>
     <string name="add_to_my_devices">Добавить в мои устройства</string>
     <string name="check_readme">Прочитайте README на github</string>
+    <string name="you_are_not_add">Вы не добавили ни одного устройства</string>
+    <string name="nearest_devices_not_found">Ближайшие устройства не найдены</string>
+
 </resources>

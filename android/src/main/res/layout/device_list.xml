@@ -39,7 +39,7 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:text="Вы не добавили ни одного устройства" />
+                        android:text="@string/you_are_not_add" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_device_recycler_view"
@@ -94,7 +94,7 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="25dp"
                         android:gravity="center"
-                        android:text="@string/devices_not_found" />
+                        android:text="@string/nearest_devices_not_found" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/device_recycler_view"
