@@ -23,7 +23,7 @@ class MainView : ToolWindowFactory {
     override fun shouldBeAvailable(project: Project): Boolean {
         Adb.adbPathGetter = { AndroidSdkUtils.getAdb(project)!!.parent }
         setLogger { msg: String ->
-            val notification = Notification("SWADB", "Super Wireless ADB", msg, NotificationType.INFORMATION)
+            val notification = Notification("SWADB", "Super wireless ADB", msg, NotificationType.INFORMATION)
             Notifications.Bus.notify(notification)
         }
         return true

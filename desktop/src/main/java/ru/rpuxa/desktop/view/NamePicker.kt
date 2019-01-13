@@ -4,7 +4,7 @@ import ru.rpuxa.desktop.wireless.InternalServerController
 import ru.rpuxa.desktop.wireless.InternalServerController.passport
 import javax.swing.JOptionPane
 
-class NamePicker : FieldPicker("Change name", "Device name") {
+class NamePicker : FieldPicker("Change name", "PC name") {
 
     private val deviceName: String get() = passport.name
 
