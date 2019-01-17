@@ -92,7 +92,10 @@ class MainActivity : AppCompatActivity() {
         Wireless.server.removeListener(myDevicesAdapter)
     }
 
-    companion object {
+    override fun onBackPressed() {
+    }
+
+    private companion object {
         private const val MY_DEVICES_TAB_TAG = "my_devices"
         private const val NEAREST_DEVICES_TAB_TAG = "devices"
         private const val SETTINGS_TAB_TAG = "settings"

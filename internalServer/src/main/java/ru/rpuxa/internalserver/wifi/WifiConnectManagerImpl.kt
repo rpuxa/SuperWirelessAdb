@@ -10,8 +10,9 @@ object WifiConnectManagerImpl : WifiConnectManager {
             val interfaces = NetworkInterface.getNetworkInterfaces()
             for (network in interfaces) {
                 for (address in network.inetAddresses) {
-                    if (address.toString().startsWith("/192.168."))
-                        list.add(address.toString().substring(1))
+                    val string = address.toString()
+                    if (string.startsWith("/192.168.") || string.startsWith("/10."))
+                        list.add(string.substring(1))
                 }
             }
 

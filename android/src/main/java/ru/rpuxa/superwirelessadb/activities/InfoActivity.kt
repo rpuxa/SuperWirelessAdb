@@ -157,6 +157,10 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
         Wireless.server.removeListener(this)
     }
 
+    override fun onBackPressed() {
+        onSupportNavigateUp()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         startActivity<MainActivity>()
         return true
