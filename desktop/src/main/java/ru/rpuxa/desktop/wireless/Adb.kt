@@ -1,6 +1,7 @@
 package ru.rpuxa.desktop.wireless
 
-import ru.rpuxa.desktop.log
+import ru.rpuxa.internalserver.wireless.ADB_NOT_FOUND
+import ru.rpuxa.internalserver.wireless.UNKNOWN_ERROR
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -8,13 +9,13 @@ import java.net.InetAddress
 
 object Adb {
 
-    private const val UNKNOWN_ERROR = -1
-
     lateinit var adbPathGetter: () -> String
 
     private val adbPath get() = adbPathGetter()
 
     fun check(ip: InetAddress): Boolean {
+        if (adbNotFound)
+            return false
         try {
             val address = "${ip.toString().substring(1)}:5555"
             val builder = ProcessBuilder("cmd.exe", "/c", "cd $adbPath && adb devices")
@@ -34,7 +35,7 @@ object Adb {
         return when {
             res != 0 -> res
             check(ip) -> {
-                log("Adb connected ${ip.toString().substring(1)}")
+//                log("Adb connected ${ip.toString().substring(1)}")
                 0
             }
             else -> UNKNOWN_ERROR
@@ -43,10 +44,12 @@ object Adb {
 
     fun disconnect(ip: InetAddress) {
         change(ip, false)
-        log("Adb disconnected ${ip.toString().substring(1)}")
+//        log("Adb disconnected ${ip.toString().substring(1)}")
     }
 
     private fun change(ip: InetAddress, connect: Boolean): Int {
+        if (adbNotFound)
+            return ADB_NOT_FOUND
         try {
             val address = "${ip.toString().substring(1)}:5555"
             val builder = ProcessBuilder("cmd.exe", "/c", "cd $adbPath && adb ${if (connect) "connect" else "disconnect"} $address")
@@ -70,6 +73,8 @@ object Adb {
     }
 
     fun fix10061(ip: InetAddress): Boolean {
+        if (adbNotFound)
+            return false
         return try {
             val builder = ProcessBuilder(
                     "cmd.exe",
@@ -87,7 +92,9 @@ object Adb {
         }
     }
 
-    fun containsAdb(path: String): Boolean {
+    private val adbNotFound: Boolean get() = !containsAdb(adbPath)
+
+    private fun containsAdb(path: String): Boolean {
         try {
             val builder = ProcessBuilder("cmd.exe", "/c", "cd $path && adb version")
             builder.redirectErrorStream(true)

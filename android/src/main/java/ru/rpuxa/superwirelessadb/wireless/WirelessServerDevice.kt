@@ -4,7 +4,8 @@ import ru.rpuxa.internalserver.stream.NothingReturn
 import ru.rpuxa.internalserver.wifi.WifiDevice
 import ru.rpuxa.internalserver.wireless.*
 
-class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport) : AbstractWirelessDevice(device) {
+class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
+    : AbstractWirelessDevice(device) {
 
     init {
         wifiDevice.stream.onMessage { command, data ->

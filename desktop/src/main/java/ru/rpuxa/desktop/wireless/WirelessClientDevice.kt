@@ -7,8 +7,6 @@ import kotlin.concurrent.thread
 
 class WirelessClientDevice(device: WifiDevice) : AbstractWirelessDevice(device) {
 
-
-
     init {
         wifiDevice.stream.onMessage { command, data ->
             val ans: Any? = when (command) {
@@ -31,30 +29,37 @@ class WirelessClientDevice(device: WifiDevice) : AbstractWirelessDevice(device) 
 
         thread {
             var isAdbConnected: Boolean? = null
+            var cycles = 0
             while (!wifiDevice.isClosed) {
                 val check = Adb.check(wifiDevice.ip)
-                if (isAdbConnected != check) {
+                if (isAdbConnected != check || cycles >= 10) {
                     isAdbConnected = check
+                    cycles = 0
                     sendMessage<NothingReturn>(ADB_STATE, check)
                 }
-
+                cycles++
                 Thread.sleep(500)
             }
         }
     }
 
+    override fun setPassport() {
+    }
+
     override fun checkAdbConnection(): WirelessPromise<Boolean> =
-            toBlockingPromise(Adb.check(wifiDevice.ip))
+            fail()
 
     override fun connectAdb(): WirelessPromise<Int> =
-            toBlockingPromise(Adb.connect(wifiDevice.ip))
+            fail()
 
     override fun disconnectAdb(): WirelessPromise<NothingReturn> =
-            toBlockingPromise(run { Adb.disconnect(wifiDevice.ip); NothingReturn })
+            fail()
 
     override fun updateDevicePassport(): WirelessPromise<Passport> =
-            sendMessage(GET_DEVICE_PASSPORT)
+            fail()
 
     override fun fixAdbError10061(): WirelessPromise<Boolean> =
-            toBlockingPromise(Adb.fix10061(wifiDevice.ip))
+            fail()
+
+    private fun fail(): Nothing = throw UnsupportedOperationException("$javaClass")
 }

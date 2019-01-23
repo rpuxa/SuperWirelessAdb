@@ -32,6 +32,7 @@
     <string name="github_link" translatable="false"><u>https://github.com/rpuxa/SuperWirelessAdb</u></string>
     <string name="nearest_devices_not_found">Nearest devices not found</string>
     <string name="you_are_not_add">My devices list is empty</string>
+    <string name="adb_not_found">ADB folder not found</string>
 </resources>
 
 

@@ -9,10 +9,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import ru.rpuxa.internalserver.Monitoring
-import ru.rpuxa.internalserver.wireless.Passport
-import ru.rpuxa.internalserver.wireless.WirelessConnection
-import ru.rpuxa.internalserver.wireless.WirelessDevice
-import ru.rpuxa.internalserver.wireless.WirelessPromise
+import ru.rpuxa.internalserver.wireless.*
 import ru.rpuxa.superwirelessadb.R
 import ru.rpuxa.superwirelessadb.dialogs.LoadingDialog
 import ru.rpuxa.superwirelessadb.dialogs.OnErrorDialog
@@ -125,9 +122,10 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
     }
 
     private fun onConnectAdb(code: Int, dialog: LoadingDialog, device: WirelessDevice) {
-        when {
-            code == 0 -> toast(getString(R.string.connected))
-            code < 0 -> toast(getString(R.string.unknown_error))
+        when (code) {
+            0 -> toast(getString(R.string.connected))
+            ADB_NOT_FOUND -> toast(getString(R.string.adb_not_found))
+            UNKNOWN_ERROR -> toast(getString(R.string.unknown_error))
             else -> {
                 dialog.dismiss()
                 OnErrorDialog(code, device, fragmentManager, this).show()

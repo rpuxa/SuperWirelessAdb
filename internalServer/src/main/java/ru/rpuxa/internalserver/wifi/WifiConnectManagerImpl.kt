@@ -11,7 +11,11 @@ object WifiConnectManagerImpl : WifiConnectManager {
             for (network in interfaces) {
                 for (address in network.inetAddresses) {
                     val string = address.toString()
-                    if (string.startsWith("/192.168.") || string.startsWith("/10."))
+                    if (string.startsWith("/192.168.") ||
+                            string.startsWith("/10.") ||
+                            string.startsWith("/172.") &&
+                            string.substring(5..6).toIntOrNull() in 16..31
+                    )
                         list.add(string.substring(1))
                 }
             }

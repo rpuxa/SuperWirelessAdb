@@ -81,7 +81,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
         val msg = Message(random.nextLong(), command, data)
 
         thread {
-            Thread.sleep(5000)
+            Thread.sleep(15000)
             val p = promises.remove(msg.id) ?: return@thread
             p.timeout()
         }

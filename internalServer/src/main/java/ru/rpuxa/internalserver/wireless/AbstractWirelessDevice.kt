@@ -12,7 +12,7 @@ abstract class AbstractWirelessDevice(val wifiDevice: WifiDevice) : WirelessDevi
 
     abstract fun checkAdbConnection(): WirelessPromise<Boolean>
 
-    protected fun setPassport() {
+    protected open fun setPassport() {
         @Suppress("LeakingThis")
         passport = updateDevicePassport().getAnswerBlocking() ?: run {
             wifiDevice.close()
@@ -28,12 +28,6 @@ abstract class AbstractWirelessDevice(val wifiDevice: WifiDevice) : WirelessDevi
 
         return promise
     }
-
-
-    protected fun <T> toBlockingPromise(value: T) =
-            WirelessPromiseImpl<T>().apply {
-                answer(value)
-            }
 
     override fun equals(other: Any?): Boolean {
         if (other === this) return true
