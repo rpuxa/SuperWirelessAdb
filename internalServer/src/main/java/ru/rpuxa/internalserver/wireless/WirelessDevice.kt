@@ -1,6 +1,6 @@
 package ru.rpuxa.internalserver.wireless
 
-import ru.rpuxa.internalserver.stream.NothingReturn
+import ru.rpuxa.internalserver.stream.ReturnsNothing
 
 interface WirelessDevice {
 
@@ -10,7 +10,7 @@ interface WirelessDevice {
 
     fun connectAdb(): WirelessPromise<Int>
 
-    fun disconnectAdb(): WirelessPromise<NothingReturn>
+    fun disconnectAdb(): WirelessPromise<ReturnsNothing>
 
     fun fixAdbError10061(): WirelessPromise<Boolean>
 

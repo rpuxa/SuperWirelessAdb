@@ -31,40 +31,41 @@ class InfoActivity : AppCompatActivity(), WirelessConnection.Listener {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         is_adb_connected_layout.setOnClickListener {
-            doAsync {
-                val isAdbConnected = is_adb_connected.isChecked
-                val dialog = LoadingDialog()
-                dialog.arguments = bundleOf(
-                        LoadingDialog.LOADING_TEXT to if (isAdbConnected) getString(R.string.disconnect) else getString(R.string.connect)
-                )
-                dialog.show(fragmentManager, LOADING_DIALOG_TAG)
+            if (is_adb_connected.isEnabled)
+                doAsync {
+                    val isAdbConnected = is_adb_connected.isChecked
+                    val dialog = LoadingDialog()
+                    dialog.arguments = bundleOf(
+                            LoadingDialog.LOADING_TEXT to if (isAdbConnected) getString(R.string.disconnect) else getString(R.string.connect)
+                    )
+                    dialog.show(fragmentManager, LOADING_DIALOG_TAG)
 
-                fun WirelessPromise<*>.onError() {
-                    onError {
-                        runOnUiThread { toast(getString(R.string.error_try_again)) }
-                        dialog.dismiss()
+                    fun WirelessPromise<*>.onError() {
+                        onError {
+                            runOnUiThread { toast(getString(R.string.error_try_again)) }
+                            dialog.dismiss()
+                        }
+                    }
+
+                    val device = Wireless.getDeviceById(devicePassport.id)!!
+
+                    if (isAdbConnected) {
+                        device.disconnectAdb()
+                                .onAnswer {
+                                    runOnUiThread {
+                                        toast(getString(R.string.disconnected))
+                                        dialog.dismiss()
+                                    }
+                                }
+                                .onError()
+                    } else {
+                        device.connectAdb()
+                                .onAnswer { code ->
+                                    runOnUiThread { onConnectAdb(code, dialog, device) }
+                                }
+                                .onError()
                     }
                 }
-
-                val device = Wireless.getDeviceById(devicePassport.id)!!
-
-                if (isAdbConnected) {
-                    device.disconnectAdb()
-                            .onAnswer {
-                                runOnUiThread {
-                                    toast(getString(R.string.disconnected))
-                                    dialog.dismiss()
-                                }
-                            }
-                            .onError()
-                } else {
-                    device.connectAdb()
-                            .onAnswer { code ->
-                                runOnUiThread { onConnectAdb(code, dialog, device) }
-                            }
-                            .onError()
-                }
-            }
 
         }
 

@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import java.net.URI
 import javax.swing.*
+import kotlin.concurrent.thread
 
 class MainPanel : JPanel() {
 
@@ -55,10 +56,8 @@ class MainPanel : JPanel() {
         mainSwitch.addActionListener {
             if (InternalServerController.isServerRunning()) {
                 InternalServerController.terminateServer()
-                mainSwitch.isSelected = false
             } else {
                 InternalServerController.runServer()
-                mainSwitch.isSelected = true
             }
         }
 
@@ -79,6 +78,13 @@ class MainPanel : JPanel() {
                 openInBrowser(APP_LINK)
             }
         })
+
+        thread {
+            while (true) {
+                mainSwitch.isSelected = InternalServerController.isServerRunning()
+                Thread.sleep(1000)
+            }
+        }
     }
 
     private fun openInBrowser(link: String) {

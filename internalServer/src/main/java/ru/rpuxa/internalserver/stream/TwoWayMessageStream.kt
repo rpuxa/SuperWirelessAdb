@@ -81,7 +81,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
         val msg = Message(random.nextLong(), command, data)
 
         thread {
-            Thread.sleep(15000)
+            Thread.sleep(10_000)
             val p = promises.remove(msg.id) ?: return@thread
             p.timeout()
         }
@@ -167,5 +167,7 @@ class TwoWayMessageStream(input: InputStream, output: OutputStream) {
     }
 
 }
+
+typealias ReturnsNothing = NothingReturn
 
 object NothingReturn : Serializable

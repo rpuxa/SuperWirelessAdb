@@ -1,6 +1,6 @@
 package ru.rpuxa.superwirelessadb.wireless
 
-import ru.rpuxa.internalserver.stream.NothingReturn
+import ru.rpuxa.internalserver.stream.ReturnsNothing
 import ru.rpuxa.internalserver.wifi.WifiDevice
 import ru.rpuxa.internalserver.wireless.*
 
@@ -13,7 +13,7 @@ class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
                 GET_DEVICE_PASSPORT -> myPassport
                 ADB_STATE -> {
                     isAdbConnected = data as Boolean
-                    NothingReturn
+                    ReturnsNothing
                 }
                 else -> throw IllegalStateException("Unknown command $command, $data")
             }
@@ -26,7 +26,7 @@ class WirelessServerDevice(device: WifiDevice, private val myPassport: Passport)
         setPassport()
     }
 
-    override fun disconnectAdb(): WirelessPromise<NothingReturn> =
+    override fun disconnectAdb(): WirelessPromise<ReturnsNothing> =
             sendMessage(DISCONNECT_ADB)
 
     override fun checkAdbConnection(): WirelessPromise<Boolean> =

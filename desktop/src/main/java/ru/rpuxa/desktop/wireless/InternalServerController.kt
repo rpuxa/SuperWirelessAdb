@@ -9,7 +9,7 @@ object InternalServerController {
 
     var autoLoading = true
     lateinit var passport: Passport
-    private val folderPath = System.getenv("APPDATA") + "\\SuperWirelessADB"
+    val folderPath = System.getenv("APPDATA") + "\\SuperWirelessADB"
     private const val FILE_NAME = "settings.dat"
     private var server: WirelessClient? = null
 

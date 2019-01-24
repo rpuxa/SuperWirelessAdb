@@ -12,8 +12,7 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
 
     val devices = HashSet<AbstractWirelessDevice>()
 
-    final override fun onConnected(device: WifiDevice) {
-        println("connected")
+    override fun onConnected(device: WifiDevice) {
         val wirelessDevice = createWirelessDevice(device)
         if (!wirelessDevice.wifiDevice.isClosed)
             synchronized(devices) {
@@ -22,8 +21,7 @@ abstract class WirelessConnection(val wifi: WifiConnection) : WifiConnection.Lis
             }
     }
 
-    final override fun onDisconnected(device: WifiDevice) {
-        println("disconnected")
+    override fun onDisconnected(device: WifiDevice) {
         synchronized(devices) {
             for (wirelessDevice in devices) {
                 if (wirelessDevice.wifiDevice.lastAddressByte == device.lastAddressByte) {
